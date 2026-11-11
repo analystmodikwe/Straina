@@ -47,8 +47,10 @@ The PR template fills in the description for you.
 
 ## 5. Review and merge
 - The reviewer reads the code and clicks **Approve** (or requests changes).
+- **Reviewers approve but never merge.** Only the PR author merges their own PR, after approval and green CI.
 - Never approve or merge your own work without a review.
-- When it is approved and CI is green: **Squash and merge**, then **Delete branch**.
+- Do not merge before the whole team has had a chance to read a big change. If in doubt, ask in the team thread.
+- When it is approved and CI is green, the author clicks **Squash and merge**, then **Delete branch**.
 - The Issue closes by itself and the card moves to **Done**.
 
 ## The board
@@ -65,3 +67,4 @@ Columns: Backlog → To Do → In Progress → In Review → Done. Move your car
 - Every Issue and PR must have **your name as assignee**.
 - Post a daily update in the team thread: what I did, what is next, what is blocking me.
 - If your PR clashes with someone else's work, pull `main`, resolve the conflict, and check the result before pushing.
+- Only the PR author merges. Reviewers approve but do not merge.
