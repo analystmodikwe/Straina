@@ -19,6 +19,7 @@ Antimicrobial resistance is a major public-health concern, but the information i
 | PRD | [docs/PRD.md](docs/PRD.md) |
 | Designs | [docs/designs/](docs/designs/) |
 | Implementation plan | [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) (to be added) |
+| Team roles and timeline | [docs/team/README.md](docs/team/README.md) |
 
 ## Team & Roles
 
