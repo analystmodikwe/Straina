@@ -932,11 +932,11 @@ flowchart TD
 | `T-QR4` | Component | `tests/components/ErrorPanel.test.tsx` | Every data-loading screen displays ERR3 when loading fails. |
 | `T-QR5` | Component | `tests/components/Offline.test.tsx` | Screens requiring the server display ERR1 when offline. |
 | `T-QR6` | Component | `tests/components/MapView.test.tsx` | Missing data is never drawn as zero on S1–S3. |
-| `T-QR7` | Component | `tests/components/AreaDetail.test.tsx` | Every displayed record shows its data source on S3 and S4. |
+| `T-QR7` | Component | `tests/components/AreaDetail.test.tsx`, `tests/components/About.test.tsx` | Every displayed record shows its data source on S3 and S4. |
 | `T-QR8` | Component | `tests/components/DemoNotice.test.tsx` | Demo data always displays the BR13 notice; verify T-US13-1 to T-US13-3. |
 | `T-QR9` | Integration | `tests/integration/queries.test.ts` | Network requests retrieve only the data needed when the time period changes. |
 | `T-QR10` | Manual | — | Smoke test Flows 1–4 in the latest Chrome, Edge, Firefox and Safari. |
-| `T-QR11` | Integration | `tests/integration/rls.test.ts` | Every permission in Section 8.2 is enforced by the database; verify T-PERM-1 to T-PERM-5. |
+| `T-QR11` | Integration | `tests/integration/rls.test.ts` | Every permission in Section 8.2 is enforced by the database; verify T-PERM-1a, T-PERM-2a/b, T-PERM-3a/b, T-PERM-4a/b, T-PERM-5a/b and T-SEC-2. |
 | `T-QR12` | Unit | `tests/unit/security.test.ts` | No secrets exist in the repository or client bundle; service-role key is absent from client code. |
 | `T-QR13` | Component | `tests/components/A11y.test.tsx` | Accessibility meets the proposed WCAG 2.1 AA target, including contrast and keyboard focus. |
 | `T-SEC-1` | Unit | `tests/unit/security.test.ts` | Secret scan confirms `SUPABASE_SERVICE_ROLE_KEY` does not exist under `src/`. |
