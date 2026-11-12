@@ -13,7 +13,7 @@ Antimicrobial resistance is a major public-health concern, but the information i
 | What | Link |
 | --- | --- |
 | Live app | To be added |
-| Stitch designs | To be added |
+| Stitch designs | (https://stitch.google.com/projects/14278857879121820535) |
 | Project board | https://github.com/users/analystmodikwe/projects/8 |
 | Team Loom | To be added |
 | PRD | [docs/PRD.md](docs/PRD.md) |
