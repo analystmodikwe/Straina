@@ -916,12 +916,30 @@ flowchart TD
 
 | Test ID | Level | File | What it checks |
 |---|---|---|---|
-| `T-EC1-1` | Component | `tests/components/Offline.test.tsx` | When offline, ERR1 shows, save/submit actions are disabled, form data is retained. |
-| `T-EC2-1` | Component | `tests/components/EmptyState.test.tsx` | Missing data displays ERR2 and is never drawn as 0% (BR5). |
-| `T-EC9-1` | Unit | `tests/unit/validation.test.ts` | Invalid resistant/tested counts or missing fields fail validation. |
-| `T-QR1`   | Component | `tests/components/Responsive.test.tsx` | Layout renders without horizontal scroll down to 360px viewport. |
-| `T-QR13`  | Component | `tests/components/A11y.test.tsx` | Contrast ratios meet WCAG 2.1 AA (4.5:1 text, 3:1 controls) and keyboard focus rings exist. |
-| `T-SEC-1` | Unit | `tests/unit/security.test.ts` | Secret scan: `SUPABASE_SERVICE_ROLE_KEY` does not exist in any file under `src/`. |
+| `T-EC1-1` | Component | `tests/components/Offline.test.tsx` | Offline state shows ERR1, disables Save/Add/Edit/Delete/Sign in, and retains form data. |
+| `T-EC2-1` | Component | `tests/components/EmptyState.test.tsx` | No data displays ERR2 and the area is never drawn as zero (BR5). |
+| `T-EC3-1` | Component | `tests/components/ProtectedRoute.test.tsx` | Wrong role redirects to S10, displays ERR9, and hides protected form data. |
+| `T-EC4-1` | Unit | `tests/unit/hotspot.test.ts` | Insufficient observations do not flag a hotspot and display ERR5. |
+| `T-EC5-1` | Component | `tests/components/ProtectedRoute.test.tsx` | Expired session redirects to S5 and displays ERR8. |
+| `T-EC6-1` | Component | `tests/components/ProtectedRoute.test.tsx` | Visitor accessing protected URL redirects to S5 with ERR10; role is checked after sign-in. |
+| `T-EC7-1` | Integration | `tests/integration/rls.test.ts` | Database rejects a Data Submitter's update or delete of another person's record; ERR11 is shown. |
+| `T-EC8-1` | Component | `tests/components/ErrorPanel.test.tsx` | Server loading failure displays ERR3 with "Try again". |
+| `T-EC9-1` | Unit | `tests/unit/validation.test.ts` | Resistant count greater than tested count or missing required fields fails validation. |
+| `T-EC10-1` | Component | `tests/components/ManageUsers.test.tsx` | Last Admin cannot remove their own Admin role. |
+| `T-QR1` | Manual | — | Check desktop and phone widths in each supported browser. |
+| `T-QR2` | Component | `tests/components/LoadingState.test.tsx` | Every data-loading screen (S1–S4, S6–S9) displays a loading state. |
+| `T-QR3` | Component | `tests/components/EmptyState.test.tsx` | Every data-loading screen displays the correct empty state when no data exists. |
+| `T-QR4` | Component | `tests/components/ErrorPanel.test.tsx` | Every data-loading screen displays ERR3 when loading fails. |
+| `T-QR5` | Component | `tests/components/Offline.test.tsx` | Screens requiring the server display ERR1 when offline. |
+| `T-QR6` | Component | `tests/components/MapView.test.tsx` | Missing data is never drawn as zero on S1–S3. |
+| `T-QR7` | Component | `tests/components/AreaDetail.test.tsx`, `tests/components/About.test.tsx` | Every displayed record shows its data source on S3 and S4. |
+| `T-QR8` | Component | `tests/components/DemoNotice.test.tsx` | Demo data always displays the BR13 notice; verify T-US13-1 to T-US13-3. |
+| `T-QR9` | Integration | `tests/integration/queries.test.ts` | Network requests retrieve only the data needed when the time period changes. |
+| `T-QR10` | Manual | — | Smoke test Flows 1–4 in the latest Chrome, Edge, Firefox and Safari. |
+| `T-QR11` | Integration | `tests/integration/rls.test.ts` | Every permission in Section 8.2 is enforced by the database; verify T-PERM-1a, T-PERM-2a/b, T-PERM-3a/b, T-PERM-4a/b, T-PERM-5a/b and T-SEC-2. |
+| `T-QR12` | Unit | `tests/unit/security.test.ts` | No secrets exist in the repository or client bundle; service-role key is absent from client code. |
+| `T-QR13` | Component | `tests/components/A11y.test.tsx` | Accessibility meets the proposed WCAG 2.1 AA target, including contrast and keyboard focus. |
+| `T-SEC-1` | Unit | `tests/unit/security.test.ts` | Secret scan confirms `SUPABASE_SERVICE_ROLE_KEY` does not exist under `src/`. |
 
 - [ ] All tests above are written, run, and fail for the expected reason.
 
@@ -1116,7 +1134,10 @@ flowchart TD
 | # | Question | Where (section / ID) | Answer / Proposed Decision | Status |
 |---|---|---|---|---|
 | 1 | What will be the first authoritative dataset for the MVP? | PRD §11.5, OQ1 | **Answered:** A clearly labelled synthetic demo dataset loaded through database migrations (`is_demo = true`). Production sources remain listed in PRD §11.6 for future integration. | Answered |
-| 2 | What are the baseline parameter values for BR12 hotspot calculation? | PRD §7, BR12, OQ2 | **Proposed:** `HOTSPOT_THRESHOLD_PCT = 25.0%`, `HOTSPOT_MIN_OBSERVATIONS = 3`, `HOTSPOT_WINDOW_MONTHS = 6`. Values are configurable constants in `src/lib/hotspot.ts`. | Proposed (Lerato / Thami confirm) |
+
+| 2 | What are the baseline parameter values for BR12 hotspot calculation? | PRD §7, BR12, OQ2 | **Answered / Approved:** HOTSPOT_THRESHOLD_PCT = 25.0%, HOTSPOT_MIN_OBSERVATIONS = 3, HOTSPOT_WINDOW_MONTHS = 6. Values are configurable constants in src/lib/hotspot.ts. | Answered |
+
+`HOTSPOT_THRESHOLD_PCT = 25.0%`, `HOTSPOT_MIN_OBSERVATIONS = 3`, `HOTSPOT_WINDOW_MONTHS = 6`. Values are configurable constants in `src/lib/hotspot.ts`. | Proposed (Lerato / Thami confirm) |
 | 3 | Which map provider will be used? | PRD §12.3, OQ3 | **Answered:** Leaflet with standard OpenStreetMap tiles (free, no API key required). | Answered |
 | 4 | What backend/database architecture will be used? | PRD §12.3, OQ4 | **Answered:** Hosted Supabase (PostgreSQL, Supabase Auth, Row-Level Security). | Answered |
 | 5 | What visual design system will be used? | PRD §18, OQ5 | **Answered:** Galaletsang's Stitch designs in `docs/designs/` and `docs/designs/style-guide.md` (Primary `#0F4C5C`, Inter font, Tailwind CSS). | Answered |
