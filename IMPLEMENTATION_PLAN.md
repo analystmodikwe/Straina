@@ -588,28 +588,28 @@ flowchart TD
 | `T-C-2` | Component | `tests/components/DemoNotice.test.tsx` | DemoNotice renders exact BR13 wording: "Demo data — simulated (synthetic) for demonstration. Not real surveillance data." |
 | `T-C-3` | Component | `tests/components/OfflineBanner.test.tsx` | OfflineBanner displays ERR1 copy when offline; is hidden when online. |
 
-- [ ] All tests above are written, run, and fail for the expected reason.
+- [x] All tests above are written, run, and fail for the expected reason.
 
 #### Step 2: Backend (Green)
 - Not applicable for Phase 1.
 
 #### Step 3: Frontend (Green)
-- [ ] Install missing libraries: `react-router-dom`, `leaflet`, `react-leaflet`, `@supabase/supabase-js`, `lucide-react`, `tailwindcss`, `postcss`, `autoprefixer`.
-- [ ] Configure Tailwind CSS with the design tokens from `docs/designs/style-guide.md`.
-- [ ] Implement `src/theme/tokens.ts` and `src/lib/messages.ts` with exact PRD strings.
-- [ ] Build `Header.tsx`, `DemoNotice.tsx`, `OfflineBanner.tsx`, and `App.tsx` routing layout.
+- [x] Install missing libraries: `react-router-dom`, `leaflet`, `react-leaflet`, `@supabase/supabase-js`, `lucide-react`, `tailwindcss`, `postcss`, `autoprefixer`.
+- [x] Configure Tailwind CSS with the design tokens from `docs/designs/style-guide.md`.
+- [x] Implement `src/theme/tokens.ts` and `src/lib/messages.ts` with exact PRD strings.
+- [x] Build `Header.tsx`, `DemoNotice.tsx`, `OfflineBanner.tsx`, and `App.tsx` routing layout.
 
 #### Step 4: Refactor and full check
-- [ ] Code formatted and clean; no unused imports.
-- [ ] Full check passes: `npm run lint && npm run typecheck && npm test && npm run build`.
+- [x] Code formatted and clean; no unused imports.
+- [x] Full check passes: `npm run lint && npm run typecheck && npm test && npm run build`.
 
 #### Step 5: Manual checks (human)
-- [ ] Running `npm run dev` opens the app shell with Header and design token colors rendered.
+- [x] Running `npm run dev` opens the app shell with Header and design token colors rendered.
 
 #### Definition of Done
-- [ ] Every test in Step 1 passes.
-- [ ] Full check command passes without warnings or errors.
-- [ ] Progress log updated in Section 17.
+- [x] Every test in Step 1 passes.
+- [x] Full check command passes without warnings or errors.
+- [x] Progress log updated in Section 17.
 
 **Commit message:** `feat(foundation): setup router, tailwind tokens and shared layout (#20)`  
 **STOP. Wait for the human to say "Start Phase 2".**
@@ -1117,7 +1117,7 @@ flowchart TD
 
 | Phase | Date | Status | Automated tests (passed / total) | Commit | Notes |
 |---|---|---|---|---|---|
-| Phase 1: Foundation & Tokens | — | Not started | — | — | — |
+| Phase 1: Foundation & Tokens | 14 Nov 2026 | Complete | 7 / 7 passed | Pending PR #41 merge | Router shell, Header, DemoNotice, OfflineBanner, tokens.ts created and verified |
 | Phase 2: Database, RLS & Seed | — | Not started | — | — | — |
 | Phase 3: Authentication & Roles | — | Not started | — | — | — |
 | Phase 4: Map & Time View | — | Not started | — | — | — |
