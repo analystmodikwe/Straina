@@ -1,6 +1,6 @@
 # STRAINA — PRODUCT REQUIREMENTS DOCUMENT
 
-**Document Status:** v1.0 candidate — ready for team review 
+**Document Status:** v1.0 Approved
 **Version:** 1.0
 **Date:** 11 Nov 2026
 **Product Name:** Straina
@@ -68,6 +68,17 @@
 | 1.0 | 11 Nov 2026 | 30 (new) | Added Non-Goals. F7 kept with its ID and marked Proposed as not built in v1. | Instructions part 4. | Same |
 | 1.0 | 11 Nov 2026 | 31 (new) | Added Edge Cases EC1–EC10 with test IDs. | Instructions part 4. | Same |
 | 1.0 | 11 Nov 2026 | 32 (new) | Added Remaining Questions / Proposed Decisions, including contradictions found. | Instructions part 1 rule 6. | Same |
+| 1.0 | 12 Nov 2026 | Header | Status changed to "v1.0 Approved"; version kept as 1.0. | Approval of v1.0 for submission. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 12 Nov 2026 | 23 (OQ2) | OQ2 marked Answered / Approved: `HOTSPOT_THRESHOLD_PCT = 25.0%`, `HOTSPOT_MIN_OBSERVATIONS = 3`, `HOTSPOT_WINDOW_MONTHS = 6`. | Hotspot rule values decided. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 12 Nov 2026 | 23 (OQ5) | OQ5 marked Answered / Approved: adopt Galaletsang's `docs/designs/style-guide.md`. | Design system decided. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 12 Nov 2026 | 23 (OQ10) | OQ10 marked Answered / Approved: public read-only access confirmed. | Map access decided. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 12 Nov 2026 | 23 (OQ11) | OQ11 marked Answered / Approved: admin-managed accounts in v1; no visitor self-registration. | Account model decided. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 12 Nov 2026 | 32 | OQ2, OQ5, OQ10 and OQ11 marked Answered / Approved in 32.1 and 32.2; contradiction note 10 updated. | Section 32 must match Section 23. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 12 Nov 2026 | 6 (F4), 7 (BR12) | Replaced "values not yet decided" with the approved OQ2 values; BR12 title updated. Rule logic unchanged. | Remove contradiction with approved OQ2. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 12 Nov 2026 | 3.1 (G5), 4.2, 7 (BR6), 8.2, 8.3, 25 | Removed "Proposed / depends on OQ10" wording; public read-only access stated as confirmed. T-PERM-1b noted as having no denied case. | Remove contradiction with approved OQ10. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 12 Nov 2026 | 8.4 | "Who can create an account" now states admin-managed accounts, no visitor self-registration. Default role and password reset left as they were. | Match approved OQ11. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 12 Nov 2026 | 18 | Design source now the adopted `docs/designs/style-guide.md`; "Pending style guide" replaced. Values not copied. | Match approved OQ5. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 12 Nov 2026 | 24 (Milestone M1), 29 | Milestone M1 status and Section 29 status set to Approved; resolved items removed from the unresolved list. | Match approved status. | Lerato Thungo (Product Owner), AI-assisted |
 
 ---
 
@@ -135,7 +146,7 @@ Provide information about the sources and context of the data being displayed.
 Identify areas that meet the documented definition of a potential AMR hotspot (BR12).
 
 **G5 — Inclusive Access**
-Make the core read-only experience (map, time view, patterns, potential hotspots and data sources) accessible without requiring an account. **Proposed:** this depends on OQ10 (is the map public?).
+Make the core read-only experience (map, time view, patterns, potential hotspots and data sources) accessible without requiring an account (public read-only access confirmed, OQ10).
 
 ### 3.2 Objectives
 
@@ -170,7 +181,7 @@ The choice of primary user is based on the role of AMR surveillance in supportin
 - Policymakers and public-health decision makers
 - General public
 
-**Proposed:** the general public can access the core read-only Straina experience without creating an account (see OQ10). Signed-in roles (Admin, Data Submitter, Analyst — Section 8) are needed only for adding, changing or managing data and users, and for any area the team later decides to restrict.
+The general public can access the core read-only Straina experience without creating an account (public read-only access confirmed, OQ10). Signed-in roles (Admin, Data Submitter, Analyst — Section 8) are needed only for adding, changing or managing data and users, and for any area the team later decides to restrict.
 
 The interface should avoid unnecessary technical language so that important information can be understood by non-specialist users.
 
@@ -346,7 +357,7 @@ Users must be able to inspect resistance information associated with selected ge
 
 **Priority:** Must Have
 
-The platform must identify potential hotspots using the rule written in BR12. The rule has three named parameters (threshold, minimum number of observations, time window). **Proposed:** the values of those parameters still require confirmation by Lerato and Thami (OQ2).
+The platform must identify potential hotspots using the rule written in BR12. The rule has three named parameters (threshold, minimum number of observations, time window). The approved values are `HOTSPOT_THRESHOLD_PCT = 25.0%`, `HOTSPOT_MIN_OBSERVATIONS = 3` and `HOTSPOT_WINDOW_MONTHS = 6` (OQ2).
 
 ### F5 — Data Source Context
 
@@ -404,7 +415,7 @@ Admins can add and change data sources.
 
 **BR5:** Unavailable data must be explicitly represented. Missing data must not be interpreted as zero.
 
-**BR6 — Who may view data (Proposed):** Anyone, including a visitor who is not signed in, may view the map, time view, resistance patterns, potential hotspots and data sources. Viewing is read-only. *Test:* T-PERM-1a, T-PERM-1b.
+**BR6 — Who may view data (public read-only access confirmed, OQ10):** Anyone, including a visitor who is not signed in, may view the map, time view, resistance patterns, potential hotspots and data sources. Viewing is read-only. *Test:* T-PERM-1a, T-PERM-1b.
 
 **BR7 — Who may add data:** Only a signed-in Admin or Data Submitter may add a resistance record. Analysts and visitors may not. *Test:* T-PERM-2a, T-PERM-2b.
 
@@ -416,7 +427,7 @@ Admins can add and change data sources.
 
 **BR11 — Who may manage data sources:** Only an Admin may add or change data sources. *Test:* T-PERM-5a, T-PERM-5b.
 
-**BR12 — Potential hotspot rule (Proposed; parameter values not yet decided):**
+**BR12 — Potential hotspot rule (parameter values approved, OQ2; per pathogen–antimicrobial scope still Proposed):**
 For one pathogen and antimicrobial combination (**Proposed**), an area is shown as a **potential hotspot** when **both** conditions are true for the selected time window:
 1. The number of observation records for that area in the window is **greater than or equal to** `HOTSPOT_MIN_OBSERVATIONS`.
 2. The resistance percentage for that area, calculated as (sum of `isolates_resistant` ÷ sum of `isolates_tested`) × 100 across those records, is **greater than or equal to** `HOTSPOT_THRESHOLD_PCT`.
@@ -425,7 +436,7 @@ The time window is `HOTSPOT_WINDOW_MONTHS` months ending on the last day of the 
 - If condition 1 fails but at least one record exists, the area is **not** flagged and shows ERR5 (insufficient data).
 - If no records exist, the area shows ERR2 (no data) and is not treated as zero (BR5).
 - The wording is always "potential hotspot", never "confirmed outbreak" (BR3).
-- **Values for the three parameters: not yet decided. Lerato and Thami must supply them (OQ2).** Until then the rule cannot be tested with real numbers; tests are written against the named parameters.
+- **Approved values (OQ2):** `HOTSPOT_THRESHOLD_PCT = 25.0%`; `HOTSPOT_MIN_OBSERVATIONS = 3`; `HOTSPOT_WINDOW_MONTHS = 6`.
 
 **BR13 — Demo data labelling:** A record whose data source is marked `is_demo = true` is demo (synthetic) data. Wherever demo data is displayed, the screen shows the notice: **"Demo data — simulated (synthetic) for demonstration. Not real surveillance data."** (**Proposed** wording.) Demo data is never described as real. *Test:* T-US13-1 to T-US13-3.
 
@@ -452,7 +463,7 @@ Every row becomes two tests: one allowed, one denied.
 
 | Action | Admin | Data Submitter | Analyst | Visitor (not signed in) | Test IDs |
 |---|---|---|---|---|---|
-| View the map, time view, patterns, hotspots and data sources | Yes | Yes | Yes | Yes (**Proposed**, OQ10) | T-PERM-1a (allowed), T-PERM-1b (denied if OQ10 is answered "sign-in only") |
+| View the map, time view, patterns, hotspots and data sources | Yes | Yes | Yes | Yes (confirmed, OQ10) | T-PERM-1a (allowed), T-PERM-1b (no denied case: public read-only access is confirmed) |
 | Add a new resistance record | Yes | Yes | No | No | T-PERM-2a, T-PERM-2b |
 | Edit or delete a record | Yes (any) | Own records only | No | No | T-PERM-3a, T-PERM-3b |
 | Manage users and roles | Yes | No | No | No | T-PERM-4a, T-PERM-4b |
@@ -460,7 +471,7 @@ Every row becomes two tests: one allowed, one denied.
 
 Every "No" is enforced by the database through row-level security (Section 12), not only by hiding buttons.
 
-### 8.3 Public vs signed-in areas (Proposed — depends on OQ10)
+### 8.3 Public vs signed-in areas (confirmed, OQ10)
 
 | Area | Screens | Access |
 |---|---|---|
@@ -469,14 +480,14 @@ Every "No" is enforced by the database through row-level security (Section 12), 
 | Signed-in, Admin only | S8, S9 | Admin only. |
 | Signed-in, any role | S10 | Shown only to a signed-in user who opened a screen their role may not open. |
 
-**OQ10 (open):** Is the map public, or only visible after signing in? The text above, Section 3 (G5), Section 4.2, Section 9, Section 10, Section 25 and the acceptance criteria all assume **public read-only access (Proposed)**. If Lerato decides the map needs sign-in, all of those places change together (S1–S4 become signed-in screens, G5 and BR6 change, T-PERM-1b becomes a visitor-denied test).
+**OQ10 (answered / approved):** Public read-only access is confirmed. S1–S4 are open to everyone; the text above, Section 3 (G5), Section 4.2, Section 9, Section 10, Section 25 and the acceptance criteria are consistent with it.
 
 ### 8.4 Account decisions
 
 | Decision | Answer |
 |---|---|
 | Sign-in method | Email and password through Supabase Auth (**Proposed**, OQ11). |
-| Who can create an account | Not decided (OQ11). **Proposed:** Admin creates or invites accounts and assigns the role. |
+| Who can create an account | Admin-managed accounts in v1. No visitor self-registration (OQ11, approved). |
 | Default role | Not decided (OQ11). |
 | Password reset | Not decided (OQ11). |
 | Session | Supabase session. Length before re-sign-in: not decided; default Supabase behaviour assumed (listed in Section 32). |
@@ -1089,15 +1100,15 @@ No numeric speed target has been decided (Section 32).
 
 The repository README lists the Stitch designs link as "To be added" and refers to `docs/designs/`. I could not read the contents of `docs/designs/`, so no colour, typeface or spacing value is copied here.
 
-**Proposed (OQ5):** the design system is Galaletsang's Stitch designs saved in `docs/designs/`, with a short style guide. Values below are filled in from that style guide once Galaletsang confirms it; until then they are marked "Pending style guide".
+**Adopted (OQ5):** the design system is Galaletsang's `docs/designs/style-guide.md`. Colour, typography, spacing and icon values are defined there and are not copied into this PRD.
 
 | Item | Status |
 |---|---|
-| Source of truth | `docs/designs/` plus a style guide (Proposed). |
-| Primary, secondary, accent colours | Pending style guide (Galaletsang). |
-| Typography and font sizes | Pending style guide (Galaletsang). |
-| Spacing system, border radius, shadows | Pending style guide (Galaletsang). |
-| Icons | Pending style guide (Galaletsang). |
+| Source of truth | `docs/designs/style-guide.md` (adopted, OQ5). |
+| Primary, secondary, accent colours | Defined in `docs/designs/style-guide.md` (adopted, OQ5). |
+| Typography and font sizes | Defined in `docs/designs/style-guide.md` (adopted, OQ5). |
+| Spacing system, border radius, shadows | Defined in `docs/designs/style-guide.md` (adopted, OQ5). |
+| Icons | Defined in `docs/designs/style-guide.md` (adopted, OQ5). |
 | Dark mode | Not decided (Lerato / Galaletsang). |
 | Map style | **Proposed:** standard OpenStreetMap tiles through Leaflet. |
 | Accessibility target | **Proposed:** WCAG 2.1 AA (Section 15). |
@@ -1226,16 +1237,16 @@ These assumptions must be validated during development.
 | ID | Question | Answer / Proposed answer | Status | Who confirms |
 |---|---|---|---|---|
 | OQ1 | What will be the first authoritative dataset/API? | **Proposed:** a synthetic, clearly labelled demo dataset loaded through a migration file. Real sources (WHO GLASS, NICD) stay listed in 11.6 as future options. | Proposed | Lerato |
-| OQ2 | What methodology will be used to define a potential hotspot? | The rule is written in BR12 (threshold, minimum number of observations, time window). **The three values are not decided.** | Rule written; values unresolved | Lerato, Thami |
+| OQ2 | What methodology will be used to define a potential hotspot? | The rule is written in BR12. Approved values: `HOTSPOT_THRESHOLD_PCT = 25.0%`; `HOTSPOT_MIN_OBSERVATIONS = 3`; `HOTSPOT_WINDOW_MONTHS = 6`. | Answered / Approved | Lerato, Thami |
 | OQ3 | Which map provider will be used? | **Proposed:** Leaflet with OpenStreetMap (both free). | Proposed | Galaletsang, Lesedi |
 | OQ4 | What backend/database architecture will be used? | **Proposed:** Supabase — Auth, Postgres, row-level security. | Proposed | Lesedi |
-| OQ5 | What visual design system will be used? | **Proposed:** the Stitch designs in `docs/designs/`, with a short style guide. | Proposed | Galaletsang |
+| OQ5 | What visual design system will be used? | Adopt Galaletsang's `docs/designs/style-guide.md`. | Answered / Approved | Galaletsang |
 | OQ6 | What geographic resolution will be supported? | Must match what the demo data contains (for example province or district). Exact level not decided. | Unresolved | Lerato |
 | OQ7 | Which browsers and devices must be supported? | **Proposed:** latest Chrome, Edge, Firefox and Safari; desktop and phone widths. | Proposed | Lerato |
 | OQ8 | What accessibility standard will be targeted? | **Proposed:** WCAG 2.1 level AA. | Proposed | Lerato |
 | OQ9 | What legal and privacy requirements apply to public access and the selected datasets? | Demo data contains no real personal data. Personal data held: account email and role (Section 14). Hosting country and POPIA cross-border position not yet checked. | Proposed | Lerato |
-| OQ10 | Is the map public, or only visible after signing in? | **Proposed:** public read-only (S1–S4 open to everyone; see 8.3). | Unresolved — needs decision | Lerato |
-| OQ11 | How are accounts created, what is the default role, is there password reset in v1? | **Proposed:** Admin creates or invites accounts and assigns the role. Default role and password reset not decided. | Unresolved | Lerato, Lesedi |
+| OQ10 | Is the map public, or only visible after signing in? | Public read-only access is confirmed (S1–S4 open to everyone; see 8.3). | Answered / Approved | Lerato |
+| OQ11 | How are accounts created, what is the default role, is there password reset in v1? | Admin-managed accounts in v1. No visitor self-registration. | Answered / Approved | Lerato, Lesedi |
 
 ---
 
@@ -1249,7 +1260,7 @@ Statuses use only what the repository and README show (checked 11 Nov 2026). The
 
 ### M1 — PRD Approved (Milestone M1)
 
-**Status:** v1.0 final draft candidate ready for team review; not approved. Approval needs one reviewer approval and a green CI check on the pull request (per the README and the v1.0 instructions).
+**Status:** v1.0 Approved.
 
 ### M2 — Design Ready
 
@@ -1280,7 +1291,7 @@ The Straina MVP will be a web application that:
 - Identifies potential hotspots using the BR12 rule.
 - Provides source information.
 - Clearly communicates limitations.
-- Lets anyone view the read-only parts without an account (**Proposed**, OQ10).
+- Lets anyone view the read-only parts without an account (confirmed, OQ10).
 - Lets signed-in Admins and Data Submitters add records, Data Submitters change only their own records, and Admins manage users, roles and data sources (Section 8).
 - Does not provide individual diagnosis or treatment recommendations.
 
@@ -1367,17 +1378,15 @@ Before the project is considered complete, confirm:
 
 ## 29. CURRENT PRD STATUS
 
-**Status:** v1.0 final draft candidate — ready for team review.
+**Status:** v1.0 Approved.
 
-The following items remain genuinely unresolved (details in Section 32):
+The following items remain unresolved (details in Section 32); OQ2, OQ5, OQ10 and OQ11 are answered / approved:
 
 - Original app idea link
-- Whether the map is public (OQ10)
-- Hotspot parameter values (OQ2)
 - Geographic resolution (OQ6)
-- Account creation, default role and password reset (OQ11)
+- Default role and password reset (OQ11; account creation is decided)
 - Confirmation of every **Proposed** decision by the named person
-- Style-guide values (colours, typography, spacing, dark mode)
+- Dark mode (not decided in this PRD)
 - Legal/privacy position: hosting country, retention, account deletion (OQ9)
 - Whether F8–F11 stay in the MVP
 
@@ -1425,7 +1434,7 @@ These are **Proposed** non-goals for v1; Lerato has final say.
 | First data source (OQ1) | Synthetic demo dataset via migration file | Lerato |
 | Map provider (OQ3) | Leaflet + OpenStreetMap | Galaletsang, Lesedi |
 | Backend, auth, RLS (OQ4) | Supabase Auth + Postgres + row-level security | Lesedi |
-| Design system (OQ5) | Stitch designs in `docs/designs/` + style guide | Galaletsang |
+| Design system (OQ5) | **Answered / Approved:** adopt Galaletsang's `docs/designs/style-guide.md` | Galaletsang |
 | Browsers and devices (OQ7) | Latest Chrome, Edge, Firefox, Safari; desktop and phone | Lerato |
 | Accessibility (OQ8) | WCAG 2.1 AA | Lerato |
 | Hosting | Vercel + hosted Supabase | Thami |
@@ -1442,10 +1451,10 @@ These are **Proposed** non-goals for v1; Lerato has final say.
 
 ### 32.2 Questions the PRD cannot answer
 
-1. **Is the map public or sign-in only?** (OQ10) — everything assumes public read-only.
-2. **Hotspot values:** `HOTSPOT_THRESHOLD_PCT`, `HOTSPOT_MIN_OBSERVATIONS`, `HOTSPOT_WINDOW_MONTHS` (OQ2).
+1. **Is the map public or sign-in only?** (OQ10) — **Answered / Approved:** public read-only access is confirmed.
+2. **Hotspot values** (OQ2) — **Answered / Approved:** `HOTSPOT_THRESHOLD_PCT = 25.0%`; `HOTSPOT_MIN_OBSERVATIONS = 3`; `HOTSPOT_WINDOW_MONTHS = 6`.
 3. **Geographic resolution** and its allowed values (OQ6).
-4. **Account creation, default role, password reset** (OQ11).
+4. **Account creation** (OQ11) — **Answered / Approved:** admin-managed accounts in v1; no visitor self-registration. The default role and password reset were not part of this decision and remain unspecified.
 5. **Session length** before re-sign-in; whether unsaved form input is kept after expiry.
 6. **Where the hotspot rule is calculated** (browser or database).
 7. **Number of demo records and areas**, and the location of the migration file.
@@ -1472,4 +1481,4 @@ Not resolved (kept as they were, and flagged):
 7. **Build-plan file name.** The PRD uses `MASTER.md`; the repository README uses `IMPLEMENTATION_PLAN.md`. Not changed here.
 8. **Feature count.** F1–F11 now has seven Must features; the course template limit is 3 to 5 Must features. Needs Lerato's scope decision (F9–F11 may move later).
 9. **F7 priority.** F7 is still labelled "Should Have" in Section 6 and also listed as a Proposed non-goal in Section 30. Both say Proposed until Lerato decides.
-10. **Section 8.2 "Visitor" column.** The v1.0 instructions' table has three role columns; I added a Visitor column to express the public-read decision. If OQ10 is answered "sign-in only", this column and BR6 change.
+10. **Section 8.2 "Visitor" column.** The v1.0 instructions' table has three role columns; I added a Visitor column to express the public-read decision. OQ10 is now approved as public read-only, so this column and BR6 stand.
