@@ -1,0 +1,43 @@
+export const tokens = {
+  color: {
+    primary: '#0F4C5C',
+    primaryHover: '#0B3A47',
+    secondary: '#334155',
+    accent: '#0369A1',
+    background: '#F8FAFC',
+    surface: '#FFFFFF',
+    text: '#0F172A',
+    textMuted: '#475569',
+    border: '#CBD5E1',
+    borderControl: '#64748B',
+    error: '#B42318',
+    errorBg: '#FEF3F2',
+    offline: '#7A2E0E',
+    offlineBg: '#FEF0C7',
+    demo: '#4C1D95',
+    demoBg: '#EDE9FE',
+    success: '#085D3A',
+    successBg: '#DCFAE6',
+    hotspot: '#C2410C',
+    hotspotChip: '#9A3412',
+    hotspotChipBg: '#FFEDD5',
+    notHotspot: '#2F7F9E',
+    insufficientData: '#475569',
+    insufficientDataBg: '#E2E8F0',
+  },
+  font: {
+    family: 'Inter, system-ui, sans-serif',
+  },
+  spacing: {
+    base: 4,
+  },
+  radius: {
+    control: '6px',
+    card: '12px',
+    tag: '9999px',
+  },
+  shadow: {
+    card: '0 1px 2px rgba(15,23,42,0.08)',
+    popover: '0 4px 12px rgba(15,23,42,0.12)',
+  },
+} as const
