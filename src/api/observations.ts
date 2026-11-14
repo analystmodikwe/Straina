@@ -1,5 +1,6 @@
 
 import { supabaseClient } from '../lib/supabase'
+import { MESSAGES } from '../lib/messages'
 import type { AmrObservation, DataSource } from '../types'
 
 export interface ObservationFilters {
@@ -41,7 +42,7 @@ export async function getObservations(
   })
 
   if (error) {
-    throw error
+    throw new Error(MESSAGES.ERR3)
   }
 
   return (data ?? []) as AmrObservation[]
@@ -57,11 +58,11 @@ export async function getAreaDetail(
     .order('period_start', { ascending: false })
 
   if (error) {
-    throw error
+    throw new Error(MESSAGES.ERR3)
   }
 
   if (!data || data.length === 0) {
-    throw new Error('No data are available for this selection.')
+    throw new Error(MESSAGES.ERR2)
   }
 
   return data as AreaObservation[]

@@ -1,5 +1,6 @@
 
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { MESSAGES } from '../../src/lib/messages'
 
 const { mockFrom } = vi.hoisted(() => ({
   mockFrom: vi.fn(),
@@ -47,9 +48,7 @@ describe('Observation API', () => {
   })
 
   it('retrieves observations using the selected filters', async () => {
-    const observations = [
-      { id: '1', area_code: 'GP' },
-    ]
+    const observations = [{ id: '1', area_code: 'GP' }]
 
     const query = createQuery({
       data: observations,
@@ -67,18 +66,14 @@ describe('Observation API', () => {
 
     expect(mockFrom).toHaveBeenCalledWith('amr_observations')
     expect(query.select).toHaveBeenCalledWith('*')
-    expect(query.gte).toHaveBeenCalledWith(
-      'period_end',
-      '2025-01-01',
-    )
-    expect(query.lte).toHaveBeenCalledWith(
-      'period_start',
-      '2025-12-31',
-    )
+    expect(query.gte).toHaveBeenCalledWith('period_end', '2025-01-01')
+    expect(query.lte).toHaveBeenCalledWith('period_start', '2025-12-31')
+    expect(query.eq).toHaveBeenCalledWith('pathogen', 'Klebsiella pneumoniae')
+    expect(query.eq).toHaveBeenCalledWith('antimicrobial', 'Ciprofloxacin')
     expect(result).toEqual(observations)
   })
 
-  it('retrieves observations for a selected area with its data source', async () => {
+  it('retrieves area observations with their linked data source', async () => {
     const observations = [
       {
         id: '1',
@@ -107,18 +102,36 @@ describe('Observation API', () => {
     expect(result).toEqual(observations)
   })
 
-  it('throws an error when observations cannot be retrieved', async () => {
-    const error = new Error('Database connection failed')
-
+  it('uses the standard error message when observations cannot load', async () => {
     mockFrom.mockReturnValue(
       createQuery({
         data: null,
-        error,
+        error: new Error('Database connection failed'),
       }),
     )
 
-    await expect(getObservations()).rejects.toThrow(
-      'Database connection failed',
+    await expect(getObservations()).rejects.toThrow(MESSAGES.ERR3)
+  })
+
+  it('uses the standard error message when area observations cannot load', async () => {
+    mockFrom.mockReturnValue(
+      createQuery({
+        data: null,
+        error: new Error('Database connection failed'),
+      }),
     )
+
+    await expect(getAreaDetail('GP')).rejects.toThrow(MESSAGES.ERR3)
+  })
+
+  it('returns the standard empty-area message when no observations exist', async () => {
+    mockFrom.mockReturnValue(
+      createQuery({
+        data: [],
+        error: null,
+      }),
+    )
+
+    await expect(getAreaDetail('GP')).rejects.toThrow(MESSAGES.ERR2)
   })
 })
