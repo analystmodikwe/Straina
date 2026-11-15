@@ -27,6 +27,8 @@ You own the two public map screens and the entire design system (tokens, Tailwin
 | `src/pages/S1_HomeMap.tsx` | Home / Map screen at `/` (US1, US4, US5, US13). Renders a Leaflet map via `react-leaflet`. Pins represent area hotspots — potential hotspot styling vs normal. Clicking a pin navigates to S3. Includes `MapLegend`, `DemoNotice` (BR13 — import text from `src/lib/messages.ts`), and `OfflineBanner` (Thami's component — import it). |
 | `src/pages/S2_Explore.tsx` | Map Exploration screen at `/explore` (US2, US3, US4). Period selector + map replay. Uses `PatternCard` (Lerato's component — import it). |
 | `src/components/MapLegend.tsx` | Map legend panel — explains hotspot colours and threshold values (25%, ≥ 3 observations, 6-month window per BR12). Static, no data fetching. |
+| `src/components/MapStatusPanel.tsx` | Map status overlay handling loading, error (with retry button), and empty data states. |
+| `src/components/StrainaMap.tsx` | Interactive Leaflet map component with customized SVG markers, viewport centering, and area pin click handlers. |
 | `src/components/DemoNotice.tsx` | Strip shown whenever any displayed record has `is_demo = true` (BR13). Text comes from `src/lib/messages.ts`. Do not hardcode the notice text in this component. |
 | `src/components/UI/Button.tsx` | Shared button component — `variant` prop: `primary`, `secondary`, `danger`. Uses Tailwind classes derived from `tokens.ts`. Exported for use across all pages. |
 
@@ -38,11 +40,16 @@ You own the two public map screens and the entire design system (tokens, Tailwin
 
 ## Backend Work
 
-You do not own a dedicated API file. Your backend contribution is through the map data flow:
+You own the map data transformations and Leaflet marker utilities:
 
-- `S1_HomeMap.tsx` calls `getObservations()` from `src/api/observations.ts` (Gareth's file) and `computeHotspots()` from `src/lib/hotspot.ts` (Thami's file) — import both, do not edit them.
+| File | What it does |
+|---|---|
+| `src/lib/mapData.ts` | Data loading hook (`useMapData()`) and aggregation utilities (`buildAreas()`, `hasDemoData()`, `sourcesFor()`, `quarterOf()`, `quarterLabel()`) combining observations and hotspots for the map. |
+| `src/lib/mapPins.ts` | Leaflet SVG icon generator (`createPinIcon()`) styling markers with brand tokens, hatched patterns for hotspots, and active selection rings. |
+
+- `S1_HomeMap.tsx` and `S2_Explore.tsx` call `getObservations()` from `src/api/observations.ts` (Gareth's file) and `computeHotspots()` from `src/lib/hotspot.ts` (Thami's file) via `mapData.ts`.
 - In your tests, you mock those modules and assert that the map renders pins correctly when data has / hasn't crossed the hotspot threshold.
-- Your design system (`tokens.ts`, `tailwind.config.js`) is infrastructure that every other team member depends on — this is your backend-equivalent contribution.
+- Your design system (`tokens.ts`, `tailwind.config.js`) is infrastructure that every other team member depends on.
 
 If you need a change to `getObservations()` or `computeHotspots()`, open a PR on Gareth's or Thami's branch and tag them.
 

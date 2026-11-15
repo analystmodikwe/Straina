@@ -1,33 +1,21 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Header } from './components/Header'
-import { DemoNotice } from './components/DemoNotice'
-import { OfflineBanner } from './components/OfflineBanner'
+import { S1_HomeMap } from './pages/S1_HomeMap'
+import { S2_Explore } from './pages/S2_Explore'
+import { S3_AreaDetail } from './pages/S3_AreaDetail'
+import { S4_About } from './pages/S4_About'
 
 export function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col font-sans">
-        <OfflineBanner />
-        <DemoNotice />
         <Header />
         <main className="flex-1 flex flex-col">
           <Routes>
-            <Route
-              path="/"
-              element={<div className="p-8 text-center text-[#475569]">Home / Map (S1)</div>}
-            />
-            <Route
-              path="/explore"
-              element={<div className="p-8 text-center text-[#475569]">Map Exploration (S2)</div>}
-            />
-            <Route
-              path="/areas/:areaCode"
-              element={<div className="p-8 text-center text-[#475569]">Location Detail (S3)</div>}
-            />
-            <Route
-              path="/about"
-              element={<div className="p-8 text-center text-[#475569]">Data Sources & About (S4)</div>}
-            />
+            <Route path="/" element={<S1_HomeMap />} />
+            <Route path="/explore" element={<S2_Explore />} />
+            <Route path="/areas/:areaCode" element={<S3_AreaDetail />} />
+            <Route path="/about" element={<S4_About />} />
             <Route
               path="/sign-in"
               element={<div className="p-8 text-center text-[#475569]">Sign In (S5)</div>}

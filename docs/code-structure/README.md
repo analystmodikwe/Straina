@@ -31,7 +31,9 @@ Straina/
 │   │   ├── supabase.ts               ← Lesedi
 │   │   ├── messages.ts               ← Lesedi
 │   │   ├── validation.ts             ← Gareth
-│   │   └── hotspot.ts                ← Thami
+│   │   ├── hotspot.ts                ← Thami
+│   │   ├── mapData.ts                ← Galaletsang
+│   │   └── mapPins.ts                ← Galaletsang
 │   ├── hooks/
 │   │   └── useOnline.ts              ← Thami
 │   ├── api/
@@ -59,6 +61,8 @@ Straina/
 │       ├── RecordRow.tsx             ← Gareth
 │       ├── DemoNotice.tsx            ← Galaletsang
 │       ├── MapLegend.tsx             ← Galaletsang
+│       ├── MapStatusPanel.tsx        ← Galaletsang
+│       ├── StrainaMap.tsx            ← Galaletsang
 │       ├── AboutSection.tsx          ← Lerato
 │       ├── PatternCard.tsx           ← Lerato
 │       ├── OfflineBanner.tsx         ← Thami
@@ -99,7 +103,7 @@ Straina/
 |---|---|---|---|
 | **Lesedi** (Tech Lead) | `S5_SignIn.tsx`, `S10_AccessDenied.tsx`, `Header.tsx`, `ProtectedRoute.tsx`, `Toast.tsx`, `App.tsx` | `src/lib/supabase.ts`, `src/api/auth.ts`, `src/types/index.ts`, `src/lib/messages.ts`, `supabase/migrations/` | `tests/unit/security.test.ts`, `tests/components/Header.test.tsx`, `tests/components/SignIn.test.tsx`, `tests/components/ProtectedRoute.test.tsx`, `tests/integration/schema.test.ts` |
 | **Lerato** (Product Owner) | `S3_AreaDetail.tsx`, `S4_About.tsx`, `AboutSection.tsx`, `PatternCard.tsx` | `src/api/sources.ts` | `tests/components/AreaDetail.test.tsx`, `tests/components/About.test.tsx` |
-| **Galaletsang** (Designer) | `S1_HomeMap.tsx`, `S2_Explore.tsx`, `MapLegend.tsx`, `DemoNotice.tsx`, `UI/Button.tsx`, `src/theme/tokens.ts`, `tailwind.config.js`, `src/index.css` | *(contributes to map data assertions in tests)* | `tests/unit/tokens.test.ts`, `tests/components/MapView.test.tsx`, `tests/components/ExploreTime.test.tsx` |
+| **Galaletsang** (Designer) | `S1_HomeMap.tsx`, `S2_Explore.tsx`, `MapLegend.tsx`, `MapStatusPanel.tsx`, `StrainaMap.tsx`, `DemoNotice.tsx`, `UI/Button.tsx`, `src/theme/tokens.ts`, `tailwind.config.js`, `src/index.css` | `src/lib/mapData.ts`, `src/lib/mapPins.ts` | `tests/unit/tokens.test.ts`, `tests/components/MapView.test.tsx`, `tests/components/ExploreTime.test.tsx` |
 | **Gareth** (QA/Test Lead) | `S6_RecordForm.tsx`, `S7_RecordList.tsx`, `ErrorPanel.tsx`, `UI/TextField.tsx`, `UI/SelectField.tsx`, `UI/Modal.tsx`, `DeleteConfirmModal.tsx`, `RecordRow.tsx` | `src/api/observations.ts`, `src/lib/validation.ts` | `tests/unit/validation.test.ts`, `tests/components/RecordForm.test.tsx`, `tests/components/RecordList.test.tsx`, `tests/integration/rls.test.ts` |
 | **Thami** (DevOps/Release) | `S8_ManageUsers.tsx`, `S9_ManageSources.tsx`, `OfflineBanner.tsx` | `src/api/users.ts`, `src/lib/hotspot.ts`, `src/hooks/useOnline.ts`, `.github/workflows/ci.yml`, `vercel.json` | `tests/unit/hotspot.test.ts`, `tests/components/ManageUsers.test.tsx`, `tests/components/ManageSources.test.tsx`, `tests/components/Offline.test.tsx` |
 
