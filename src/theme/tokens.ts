@@ -22,14 +22,29 @@ export const tokens = {
     hotspotChip: '#9A3412',
     hotspotChipBg: '#FFEDD5',
     notHotspot: '#2F7F9E',
-    insufficientData: '#475569',
-    insufficientDataBg: '#E2E8F0',
+    insufficientData: '#475569', // dashed outline
+    insufficientDataBg: '#E2E8F0', // fill
+    noData: '#64748B', // hollow outline
+    disabledBg: '#E2E8F0',
+    disabledText: '#64748B',
   },
   font: {
     family: 'Inter, system-ui, sans-serif',
+    stack: ['Inter', 'system-ui', 'sans-serif'],
+    // Matches Tailwind's default text-* sizes, so no fontSize override is needed.
+    size: {
+      pageTitle: { size: '30px', lineHeight: '36px', weight: 600 }, // text-3xl font-semibold
+      sectionHeading: { size: '20px', lineHeight: '28px', weight: 600 }, // text-xl font-semibold
+      body: { size: '16px', lineHeight: '24px', weight: 400 }, // text-base
+      label: { size: '14px', lineHeight: '20px', weight: 500 }, // text-sm font-medium
+      button: { size: '14px', lineHeight: '20px', weight: 600 }, // text-sm font-semibold
+      helper: { size: '12px', lineHeight: '16px', weight: 500 }, // text-xs font-medium
+      wordmark: { size: '20px', lineHeight: '28px', weight: 700 }, // text-xl font-bold
+    },
   },
   spacing: {
     base: 4,
+    scale: [4, 8, 12, 16, 24, 32, 48],
   },
   radius: {
     control: '6px',

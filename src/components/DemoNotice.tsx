@@ -1,11 +1,18 @@
-import React from 'react'
 import { MESSAGES } from '../lib/messages'
 
-export const DemoNotice: React.FC = () => {
+interface DemoNoticeProps {
+  /** BR13: pass true only when a displayed record comes from a demo source. Defaults to true. */
+  show?: boolean
+}
+
+export function DemoNotice({ show = true }: DemoNoticeProps) {
+  if (!show) return null
+
   return (
     <div
       role="status"
-      className="bg-[#EDE9FE] text-[#4C1D95] text-xs font-medium px-4 py-2 text-center border-b border-[#CBD5E1]"
+      data-testid="demo-notice"
+      className="border-b border-border bg-demo-bg px-4 py-2 text-center text-xs font-medium text-demo"
     >
       {MESSAGES.DEMO_NOTICE}
     </div>
