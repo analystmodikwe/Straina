@@ -1,58 +1,54 @@
+import { tokens } from './src/theme/tokens.ts'
+
+const c = tokens.color
+
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#0F4C5C',
-          hover: '#0B3A47',
-        },
-        secondary: '#334155',
-        accent: '#0369A1',
-        background: '#F8FAFC',
-        surface: '#FFFFFF',
-        text: {
-          DEFAULT: '#0F172A',
-          muted: '#475569',
-        },
-        border: {
-          DEFAULT: '#CBD5E1',
-          control: '#64748B',
-        },
-        hotspot: {
-          DEFAULT: '#C2410C',
-          chip: '#9A3412',
-          chipBg: '#FFEDD5',
-        },
-        notHotspot: '#2F7F9E',
-        insufficient: '#E2E8F0',
-        error: {
-          DEFAULT: '#B42318',
-          bg: '#FEF3F2',
-        },
-        offline: {
-          DEFAULT: '#7A2E0E',
-          bg: '#FEF0C7',
-        },
-        demo: {
-          DEFAULT: '#4C1D95',
-          bg: '#EDE9FE',
-        },
-        success: {
-          DEFAULT: '#085D3A',
-          bg: '#DCFAE6',
-        },
+        primary: { DEFAULT: c.primary, hover: c.primaryHover },
+        secondary: c.secondary,
+        accent: c.accent,
+        background: c.background,
+        surface: c.surface,
+        text: { DEFAULT: c.text, muted: c.textMuted },
+        border: { DEFAULT: c.border, control: c.borderControl },
+        hotspot: { DEFAULT: c.hotspot, chip: c.hotspotChip, chipBg: c.hotspotChipBg },
+        notHotspot: c.notHotspot,
+        insufficient: c.insufficientDataBg,
+        insufficientOutline: c.insufficientData,
+        noData: c.noData,
+        disabled: { DEFAULT: c.disabledBg, text: c.disabledText },
+        error: { DEFAULT: c.error, bg: c.errorBg },
+        offline: { DEFAULT: c.offline, bg: c.offlineBg },
+        demo: { DEFAULT: c.demo, bg: c.demoBg },
+        success: { DEFAULT: c.success, bg: c.successBg },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: [...tokens.font.stack],
       },
       borderRadius: {
-        control: '6px',
-        card: '12px',
+        control: tokens.radius.control,
+        card: tokens.radius.card,
+      },
+      boxShadow: {
+        card: tokens.shadow.card,
+        popover: tokens.shadow.popover,
+      },
+      minHeight: {
+        control: '40px',
+        'control-touch': '44px',
+      },
+      height: {
+        map: '600px',
+      },
+      maxWidth: {
+        content: '960px',
+      },
+      zIndex: {
+        map: '1000', // above Leaflet panes
       },
     },
   },
