@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { tokens } from '../../src/theme/tokens'
+// @ts-expect-error plain JS config, no type declarations
+import config from '../../tailwind.config.js'
 
 describe('T-SETUP-1: Design tokens', () => {
   it('defines the correct brand and semantic colors from style-guide.md', () => {
@@ -14,16 +16,57 @@ describe('T-SETUP-1: Design tokens', () => {
     expect(tokens.color.border).toBe('#CBD5E1')
     expect(tokens.color.borderControl).toBe('#64748B')
     expect(tokens.color.error).toBe('#B42318')
+    expect(tokens.color.errorBg).toBe('#FEF3F2')
     expect(tokens.color.offline).toBe('#7A2E0E')
+    expect(tokens.color.offlineBg).toBe('#FEF0C7')
     expect(tokens.color.demo).toBe('#4C1D95')
+    expect(tokens.color.demoBg).toBe('#EDE9FE')
     expect(tokens.color.success).toBe('#085D3A')
+    expect(tokens.color.successBg).toBe('#DCFAE6')
     expect(tokens.color.hotspot).toBe('#C2410C')
+    expect(tokens.color.hotspotChip).toBe('#9A3412')
+    expect(tokens.color.hotspotChipBg).toBe('#FFEDD5')
+    expect(tokens.color.notHotspot).toBe('#2F7F9E')
+    expect(tokens.color.insufficientData).toBe('#475569')
+    expect(tokens.color.insufficientDataBg).toBe('#E2E8F0')
+    expect(tokens.color.noData).toBe('#64748B')
   })
 
-  it('defines typography, border radii and spacing scale', () => {
-    expect(tokens.font.family).toContain('Inter')
+  it('defines Inter, the type scale and the spacing scale', () => {
+    expect(tokens.font.family).toBe('Inter, system-ui, sans-serif')
+    expect(tokens.font.size.pageTitle).toEqual({ size: '30px', lineHeight: '36px', weight: 600 })
+    expect(tokens.font.size.sectionHeading.size).toBe('20px')
+    expect(tokens.font.size.body.size).toBe('16px')
+    expect(tokens.font.size.label.size).toBe('14px')
+    expect(tokens.font.size.button.weight).toBe(600)
+    expect(tokens.font.size.helper.size).toBe('12px')
+    expect(tokens.font.size.wordmark.weight).toBe(700)
+    expect(tokens.spacing.base).toBe(4)
+    expect([...tokens.spacing.scale]).toEqual([4, 8, 12, 16, 24, 32, 48])
     expect(tokens.radius.control).toBe('6px')
     expect(tokens.radius.card).toBe('12px')
-    expect(tokens.spacing.base).toBe(4)
+  })
+
+  it('tailwind.config.js exposes the same values as tokens.ts', () => {
+    const { colors, fontFamily, borderRadius } = config.theme.extend
+    expect(colors.primary.DEFAULT).toBe(tokens.color.primary)
+    expect(colors.primary.hover).toBe(tokens.color.primaryHover)
+    expect(colors.secondary).toBe(tokens.color.secondary)
+    expect(colors.accent).toBe(tokens.color.accent)
+    expect(colors.background).toBe(tokens.color.background)
+    expect(colors.surface).toBe(tokens.color.surface)
+    expect(colors.text.DEFAULT).toBe(tokens.color.text)
+    expect(colors.text.muted).toBe(tokens.color.textMuted)
+    expect(colors.border.DEFAULT).toBe(tokens.color.border)
+    expect(colors.border.control).toBe(tokens.color.borderControl)
+    expect(colors.hotspot.DEFAULT).toBe(tokens.color.hotspot)
+    expect(colors.notHotspot).toBe(tokens.color.notHotspot)
+    expect(colors.error.DEFAULT).toBe(tokens.color.error)
+    expect(colors.offline.DEFAULT).toBe(tokens.color.offline)
+    expect(colors.demo.DEFAULT).toBe(tokens.color.demo)
+    expect(colors.success.DEFAULT).toBe(tokens.color.success)
+    expect(fontFamily.sans).toEqual(['Inter', 'system-ui', 'sans-serif'])
+    expect(borderRadius.control).toBe('6px')
+    expect(borderRadius.card).toBe('12px')
   })
 })
