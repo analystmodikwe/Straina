@@ -3,3 +3,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background font-sans text-text antialiased;
+  }
+
+  /* Visible keyboard focus: 2px accent ring with 2px offset (WCAG 2.1 AA). */
+  a:focus-visible,
+  button:focus-visible,
+  select:focus-visible,
+  input:focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2;
+  }
+
+  .leaflet-container {
+    font-family: inherit;
+  }
+}
