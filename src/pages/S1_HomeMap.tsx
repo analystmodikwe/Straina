@@ -57,15 +57,8 @@ export function S1_HomeMap() {
           <span>Data source:</span>
           {shownSources.length === 0 && <span className="text-text-muted">None loaded</span>}
           {shownSources.map((s) => (
-            <span key={s.id} className="flex items-center gap-2">
-              {s.name}
-              {s.is_demo && (
-                <span className="rounded-full bg-demo-bg px-2 py-0.5 text-xs font-medium text-demo">
-                  Demo (synthetic)
-                </span>
-              )}
-            </span>
-          ))}
+            <span key={s.id}>{s.name}</span>
+        ))}
         </p>
         <Link to="/about" className="font-semibold text-accent underline">
           About / Data sources
