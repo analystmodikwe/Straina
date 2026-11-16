@@ -2,7 +2,7 @@
 
 **Document Status:** v1.0 Approved
 **Version:** 1.0
-**Date:** 11 Nov 2026
+**Date:** 16 Nov 2026
 **Product Name:** Straina
 **Author(s):** Lerato Thungo (Team Claude)
 **Student Number:** SNPL2026
@@ -24,7 +24,7 @@
 | Gareth Motloutsi | QA / Test Lead, Frontend, Backend |
 | Thami Sithole | DevOps / Release, Frontend, Backend |
 
-**Repository facts verified on 11 Nov 2026:** `docs/PRD.md` exists; `package.json` lists React 19, Vite, TypeScript, Vitest and ESLint only; the README marks F1–F7, Tailwind, Leaflet, Supabase and Vercel as planned; `.env.example`, migrations, `IMPLEMENTATION_PLAN.md` and the Stitch designs link are "to be added". **Not verifiable** (GitHub blocked access): `src/`, `docs/designs/`, `docs/team/`, issues and pull requests.
+**Repository facts verified on 11 Nov 2026:** `docs/PRD.md` exists; `package.json` lists React 19, Vite, TypeScript, Vitest and ESLint only; the README marks F1–F7, Tailwind, Leaflet, Supabase and Vercel as planned; `.env.example`, migrations, `IMPLEMENTATION_PLAN.md` and the Stitch designs link are "to be added". **Implementation facts reported by the team on 16 Nov 2026** (not verified by reading the repository): Leaflet 2D map with Stadia Maps Alidade Smooth tiles; Supabase (PostgreSQL, Auth, Row Level Security) with the MVP schema implemented; the synthetic dataset "Straina demo dataset (synthetic)" stored in the shared Supabase database; the public map working against Supabase data; production build passes. **Not verifiable** (GitHub blocked access) as of 11 Nov 2026: `src/`, `docs/designs/`, `docs/team/`, issues and pull requests.
 
 > **How to read "Proposed".** Anything marked **Proposed:** is a starting point that the team has not yet confirmed. Lerato has the final say on scope. Every Proposed item is listed in Section 32 so nothing is hidden. Nothing marked Proposed may be treated as decided during implementation until it is confirmed and this PRD is updated.
 
@@ -79,6 +79,20 @@
 | 1.0 | 12 Nov 2026 | 8.4 | "Who can create an account" now states admin-managed accounts, no visitor self-registration. Default role and password reset left as they were. | Match approved OQ11. | Lerato Thungo (Product Owner), AI-assisted |
 | 1.0 | 12 Nov 2026 | 18 | Design source now the adopted `docs/designs/style-guide.md`; "Pending style guide" replaced. Values not copied. | Match approved OQ5. | Lerato Thungo (Product Owner), AI-assisted |
 | 1.0 | 12 Nov 2026 | 24 (Milestone M1), 29 | Milestone M1 status and Section 29 status set to Approved; resolved items removed from the unresolved list. | Match approved status. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | Header, 29, 24 (M1) | Document date set to 16 Nov 2026; status kept as v1.0 Approved. | Final approval date. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 23 (OQ1), 11.5 | OQ1 Confirmed: synthetic demo dataset `Straina demo dataset (synthetic)` in the shared Supabase database; not real surveillance data. Loading mechanism recorded as not stated. | Implementation fact confirmed. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 23 (OQ2), 32.2 | OQ2 Confirmed: `HOTSPOT_THRESHOLD_PCT = 25.0%`, `HOTSPOT_MIN_OBSERVATIONS = 3`, `HOTSPOT_WINDOW_MONTHS = 6`. | Status moved from Answered / Approved to Confirmed. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 23 (OQ3), 10 (S1), 12.3, 12.4, 18 | OQ3 Confirmed: Leaflet 2D map; tile provider Stadia Maps Alidade Smooth with OpenStreetMap-derived data and attribution. Removed the "OpenStreetMap tiles / needs no key" statements. | Working map uses Stadia Maps, not direct OpenStreetMap tiles. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 23 (OQ4), 8, 12.3, 12.4 | OQ4 Confirmed: Supabase, PostgreSQL, Supabase Auth, Row Level Security enabled, public map read-only, service-role key never in browser. | Implementation fact confirmed. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 23 (OQ5) | OQ5 Confirmed: `docs/designs/style-guide.md` is the approved visual baseline. | Status moved to Confirmed. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 23 (OQ6), 11.1 | OQ6 Confirmed: `area_level` values `province`, `district`, `national`. | Geographic levels already in the schema. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 23 (OQ7, OQ8), 15, 17 (QR10, QR13), 18 | OQ7 and OQ8 Confirmed (latest Chrome, Edge, Firefox, Safari; desktop and phone widths; WCAG 2.1 AA). | Confirmed existing targets. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 23 (OQ10, OQ11), 8.1 | OQ10 Confirmed (public read-only; S1–S4 without sign-in). OQ11 Confirmed (Supabase Auth, Admin-managed/invited accounts, no self-registration). Default role and password reset left undecided. | Confirmed decisions. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 11 (11.1–11.5) | Schema marked Implemented in Supabase (`profiles`, `data_sources`, `amr_observations`, relationships, optional `created_by`, timestamps, constraints/indexes). No fields added. Delete rules remain Proposed. Fixed stale cross-references in the Section 11 intro. | MVP schema implemented. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 12.1, 12.2, 12.3, 12.4 | Replaced "not installed yet / none is built" statements with the reported implementation facts. Stadia Maps key and variable name recorded as unresolved. | Repository state changed since 11 Nov. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 7 (BR13) | Added that the main synthetic-data disclosure is retained and the small map-footer "Demo (synthetic)" badge was removed; the disclosure requirement is unchanged. | UI presentation change. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 24 (M2, M4, M5), 25 (Implemented State) | M4 set to In progress with the demonstrated public-map feature list; added an Implemented State paragraph; M2 and M5 reworded. States that not every planned feature is complete. | Honest record of the implemented state. | Lerato Thungo (Product Owner), AI-assisted |
+| 1.0 | 16 Nov 2026 | 22, 29, 32 | Assumptions 6 and 8 updated; Section 29 and Section 32 updated: confirmed items removed from the Proposed table, Stadia Maps question added. | Keep unresolved lists accurate. | Lerato Thungo (Product Owner), AI-assisted |
 
 ---
 
@@ -438,13 +452,13 @@ The time window is `HOTSPOT_WINDOW_MONTHS` months ending on the last day of the 
 - The wording is always "potential hotspot", never "confirmed outbreak" (BR3).
 - **Approved values (OQ2):** `HOTSPOT_THRESHOLD_PCT = 25.0%`; `HOTSPOT_MIN_OBSERVATIONS = 3`; `HOTSPOT_WINDOW_MONTHS = 6`.
 
-**BR13 — Demo data labelling:** A record whose data source is marked `is_demo = true` is demo (synthetic) data. Wherever demo data is displayed, the screen shows the notice: **"Demo data — simulated (synthetic) for demonstration. Not real surveillance data."** (**Proposed** wording.) Demo data is never described as real. *Test:* T-US13-1 to T-US13-3.
+**BR13 — Demo data labelling:** A record whose data source is marked `is_demo = true` is demo (synthetic) data. Wherever demo data is displayed, the screen shows the notice: **"Demo data — simulated (synthetic) for demonstration. Not real surveillance data."** (**Proposed** wording.) Demo data is never described as real. The main synthetic-data disclosure remains in the working UI; the small "Demo (synthetic)" badge beside the map footer source was removed for cleaner presentation, and this does not remove the requirement that users must be told the data is synthetic. *Test:* T-US13-1 to T-US13-3.
 
 ---
 
 ## 8. ACCOUNTS AND SIGN-IN
 
-**Replaces the previous "no accounts" decision.** Version 1 uses **Supabase Auth** for sign-in. This is **Proposed** in the v1.0 instructions and the repository README lists Supabase Auth as planned; it is not yet built.
+**Replaces the previous "no accounts" decision.** Version 1 uses **Supabase Auth** for sign-in (confirmed, OQ4 and OQ11, 16 Nov 2026). The roles are Admin, Data Submitter and Analyst. v1 accounts are Admin-managed/invited; there is no visitor self-registration.
 
 ### 8.1 Roles
 
@@ -453,7 +467,7 @@ The time window is `HOTSPOT_WINDOW_MONTHS` months ending on the last day of the 
 | Admin | Manages users, roles and data sources; can add, edit and delete any record. |
 | Data Submitter | Adds records; edits and deletes only records they created. |
 | Analyst | Views data only. |
-| Visitor (not signed in) | **Proposed:** can view the read-only parts of the app (BR6). Not a role; has no account. |
+| Visitor (not signed in) | Can view the read-only parts of the app (BR6). Not a role; has no account. |
 
 Each account has exactly one role, stored with the account's profile (11.3).
 
@@ -644,7 +658,7 @@ The primary entry point to Straina. Route `/`. Stories: US1, US5, US13.
 
 Should contain:
 
-- Interactive map (Leaflet with OpenStreetMap — Proposed)
+- Interactive 2D map (Leaflet; Stadia Maps Alidade Smooth tiles with OpenStreetMap-derived map data and attribution — confirmed, OQ3)
 - Map legend
 - Context/explanation
 - Map controls
@@ -814,13 +828,13 @@ Route `/access-denied`. Stories: US8–US12 (unhappy paths). Shows ERR9 and a "B
 
 ## 11. DATA REQUIREMENTS
 
-Straina requires real, authoritative AMR surveillance data for the **production** experience (a future step — 11.3).
+Straina requires real, authoritative AMR surveillance data for the **production** experience (a future step — 11.6).
 
-For the **MVP/demo**, Straina uses **clearly labelled synthetic demo data** (11.4). Demo data is never presented as real surveillance data (BR13).
+For the **MVP/demo**, Straina uses **clearly labelled synthetic demo data** (11.5). Demo data is never presented as real surveillance data (BR13).
 
-All table, field and type names below are **Proposed** and need confirmation from Lesedi (database) and Lerato (scope), because no database migration or schema exists in the repository yet.
+The MVP schema has been implemented in Supabase (confirmed 16 Nov 2026): the tables `profiles`, `data_sources` and `amr_observations`, the relationships in 11.4, timestamps, and the constraints and indexes they need. The fields below are those documented in this PRD; no fields were added. Exact constraint and index definitions live in the Supabase schema and are not reproduced here.
 
-### 11.1 AMR Observation (table `amr_observations`) — Proposed
+### 11.1 AMR Observation (table `amr_observations`) — Implemented
 
 | Field | Type | Required | Purpose |
 |---|---|---|---|
@@ -828,7 +842,7 @@ All table, field and type names below are **Proposed** and need confirmation fro
 | `data_source_id` | Link to Data Source | Yes | Where the record comes from (BR2). |
 | `area_code` | Text | Yes | Stable code for the geographic area; used in the S3 route. |
 | `area_name` | Text | Yes | Area name shown to users. |
-| `area_level` | Choice | Yes | Geographic resolution of the area. Allowed values: not decided (OQ6; e.g. province or district). |
+| `area_level` | Choice | Yes | Geographic resolution of the area. Allowed values: `province`, `district`, `national` (confirmed, OQ6). |
 | `latitude` | Decimal | Yes | Map position of the area. |
 | `longitude` | Decimal | Yes | Map position of the area. |
 | `period_start` | Date | Yes | Start of the period the record covers. |
@@ -843,7 +857,7 @@ All table, field and type names below are **Proposed** and need confirmation fro
 
 Resistance percentage is **calculated** (`isolates_resistant` ÷ `isolates_tested` × 100) and not stored. A record with `isolates_tested` of zero is not given a percentage (BR5).
 
-### 11.2 Data Source (table `data_sources`) — Proposed
+### 11.2 Data Source (table `data_sources`) — Implemented
 
 | Field | Type | Required | Purpose |
 |---|---|---|---|
@@ -858,7 +872,7 @@ Resistance percentage is **calculated** (`isolates_resistant` ÷ `isolates_teste
 | `is_demo` | Yes/No | Yes | Marks a synthetic demo source (BR13). |
 | `created_at` | Date-time (UTC) | Yes | When created. |
 
-### 11.3 User profile and role (table `profiles`) — Proposed
+### 11.3 User profile and role (table `profiles`) — Implemented
 
 | Field | Type | Required | Purpose |
 |---|---|---|---|
@@ -869,7 +883,7 @@ Resistance percentage is **calculated** (`isolates_resistant` ÷ `isolates_teste
 
 Passwords are handled only by Supabase Auth and are never stored in Straina's own tables.
 
-### 11.4 Relationships — Proposed
+### 11.4 Relationships — Implemented (delete rules still Proposed)
 
 - One **Data Source** has many **Observations**; every Observation belongs to exactly one Data Source.
 - One **User** (profile) can create many **Observations**; an Observation has zero or one creator (`created_by` is empty for seeded demo records).
@@ -877,14 +891,15 @@ Passwords are handled only by Supabase Auth and are never stored in Straina's ow
 - If a Data Source is deleted while Observations still link to it: **Proposed:** the delete is blocked.
 - If a User is deleted: **Proposed:** their records stay and `created_by` is cleared (so only Admin can then change them). Neither delete rule is confirmed (Section 32).
 
-### 11.5 Demo (seed) data — Proposed
+### 11.5 Demo (seed) data — Confirmed (OQ1)
 
-- **What it is:** a synthetic dataset invented for the MVP and demonstration. It contains no real patients, no real surveillance results and no real personal data.
-- **Where it is stored:** in the Supabase Postgres database, in the same tables as any future data (`data_sources`, `amr_observations`).
-- **How it is loaded:** through a database migration file (**Proposed**; file location to be set by Lesedi — the repository README says migrations and seed data are "to be added").
+- **Source name:** `Straina demo dataset (synthetic)` (the current demo source).
+- **What it is:** a synthetic dataset invented for the MVP and demonstration. It is **not real surveillance data**. It contains no real patients, no real surveillance results and no real personal data.
+- **Where it is stored:** in the shared Supabase database (PostgreSQL), in the same tables as any future data (`data_sources`, `amr_observations`).
+- **How it is loaded:** originally proposed as a database migration file. The exact loading mechanism is not recorded in the confirmed implementation facts.
 - **How it is labelled:** its data source row has `is_demo = true` and the name "Straina demo dataset (synthetic)". Every screen that displays records from a demo source shows the BR13 notice. S4 and S9 label the source "Demo (synthetic)".
 - **What distinguishes it from real data:** real surveillance records link to a source with `is_demo = false`, a real source name and URL, and verified licensing (BR1). Demo records never do.
-- **Geographic resolution and number of records:** the area level of the demo data defines the resolution (OQ6). The number of demo records and areas is not decided.
+- **Geographic resolution and number of records:** the MVP supports the area levels `province`, `district` and `national` (OQ6). The number of demo records and areas is not decided.
 - **Test accounts:** one per role (Admin, Data Submitter, Analyst), with test-only passwords that are never real. Not yet created.
 
 ### 11.6 Candidate Data Sources (future)
@@ -909,43 +924,38 @@ These are candidate sources only and are **not the production data source**. The
 
 ## 12. TECHNICAL REQUIREMENTS
 
-### 12.1 Current Technology (verified from the repository)
+### 12.1 Current Technology
 
-The current repository (`package.json`, README) shows:
-
-- Installed now: React 19, React DOM, TypeScript, Vite, Vitest, ESLint.
-- Scripts: `dev`, `build`, `lint`, `typecheck`, `test`, `preview`. The README states these checks run on every pull request through GitHub Actions.
-- **Not installed yet:** `supabase-js`, Leaflet, Tailwind CSS, a router. The README lists these as "planned".
-- Node.js 22 or newer is the stated prerequisite.
+- **Repository (verified 11 Nov 2026):** React 19, React DOM, TypeScript, Vite, Vitest, ESLint; scripts `dev`, `build`, `lint`, `typecheck`, `test`, `preview`; Node.js 22 or newer.
+- **Implementation facts reported by the team (16 Nov 2026):** the working MVP uses Leaflet (a standard 2D map), Stadia Maps Alidade Smooth as the tile provider, and Supabase (PostgreSQL, Auth, Row Level Security). The production build passes.
+- Whether Tailwind CSS, a router and Vercel hosting are in place is not recorded in this PRD.
 
 ### 12.2 Repository Status
 
-The current repository is a reference point for the project and is **not yet the final MVP source of truth**. The PRD is the source of truth for design, implementation and tests.
+The PRD remains the source of truth for design, implementation and tests. The implemented and demonstrated core working feature is the public AMR map (Section 25, Implemented State). Not every planned Straina feature is complete.
 
 ### 12.3 Architecture and Decisions
-
-All decisions in this table are **Proposed** (v1.0 instructions) and match the "planned" items in the repository README. None is built yet.
 
 | Layer | Decision | Status | Confirms |
 |---|---|---|---|
 | Frontend | React, TypeScript, Vite | Current repository | — |
 | Styling | Tailwind CSS | Proposed (README: planned) | Galaletsang |
-| Map | Leaflet with OpenStreetMap tiles | Proposed (OQ3) | Galaletsang, Lesedi |
-| Authentication | Supabase Auth | Proposed (OQ4) | Lesedi |
-| Database | Supabase-hosted Postgres | Proposed (OQ4) | Lesedi |
-| Permissions | Postgres row-level security (RLS) | Proposed (OQ4) | Lesedi |
+| Map | Leaflet (standard 2D map); Stadia Maps Alidade Smooth tiles with OpenStreetMap-derived map data and attribution | Confirmed (OQ3, 16 Nov 2026) | — |
+| Authentication | Supabase Auth | Confirmed (OQ4, OQ11) | — |
+| Database | Supabase-hosted PostgreSQL | Confirmed (OQ4) | — |
+| Permissions | PostgreSQL Row Level Security (RLS) enabled; the public map has read-only access | Confirmed (OQ4) | — |
 | Hosting | Vercel (frontend); hosted Supabase project (database and auth) | Proposed | Thami |
 | Testing | Vitest; component and end-to-end tests planned | Vitest current; rest Proposed | Gareth |
 
 ```
-User -> React web app (Vite) -> Supabase (Auth + Postgres with RLS) -> AMR data (demo dataset in MVP)
+User -> React web app (Vite, Leaflet 2D map) -> Supabase (Auth + PostgreSQL with RLS) -> AMR data (synthetic demo dataset in MVP)
 ```
 
-The frontend talks to Supabase through the `supabase-js` client. Permissions are enforced in the database with row-level security, not only in the screens. Hotspot calculation (BR12) location (browser or database) is not decided (Section 32).
+The frontend talks to Supabase through the `supabase-js` client. Permissions are enforced in the database with Row Level Security, not only in the screens. Hotspot calculation (BR12) location (browser or database) is not decided (Section 32).
 
 ### 12.4 Environment Variables
 
-The repository has no `.env.example` yet (the README says it will be added with the first Supabase pull request), so no existing variable names could be copied. **Proposed** names:
+Variable names below are **Proposed**; the names used by the implementation are not recorded in this PRD. Whether the Stadia Maps tile service needs an API key or domain authorisation, and its variable name, is not recorded here (Section 32).
 
 | Variable | Use | Public or secret |
 |---|---|---|
@@ -953,7 +963,7 @@ The repository has no `.env.example` yet (the README says it will be added with 
 | `VITE_SUPABASE_ANON_KEY` | Supabase anonymous (public) key; access is limited by row-level security | Public (safe in the browser) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase service-role key | **Secret** |
 
-**The Supabase service-role key must never be used in browser or client-side code.** It must never use the `VITE_` prefix, must never be committed, and **Proposed:** the v1 app does not need it at all. The previous placeholders (`VITE_MAP_PROVIDER_KEY`, `VITE_DATA_API_URL`, `DATA_SOURCE_API_KEY`, `DATABASE_URL`) are removed: Leaflet with OpenStreetMap needs no key (Proposed) and there is no external data API in the MVP.
+**The Supabase service-role key must never be used in browser or client-side code (confirmed, OQ4).** It must never use the `VITE_` prefix, must never be committed, and **Proposed:** the v1 app does not need it at all. The previous placeholders (`VITE_MAP_PROVIDER_KEY`, `VITE_DATA_API_URL`, `DATA_SOURCE_API_KEY`, `DATABASE_URL`) are removed: there is no external data API in the MVP.
 
 Real values are kept in `.env`, which is never committed. Only `.env.example` is committed.
 
@@ -1006,7 +1016,7 @@ Straina should support:
 - Information that is not communicated through colour alone (for example, potential hotspots use a label or pattern as well as colour)
 - Responsive layouts
 
-**Proposed:** the accessibility target is **WCAG 2.1 level AA** (OQ8). It is not confirmed until Lerato confirms it.
+The accessibility target is **WCAG 2.1 level AA** (confirmed, OQ8, 16 Nov 2026).
 
 ---
 
@@ -1087,10 +1097,10 @@ ERR10 is shown on S5 when a visitor is redirected there from a protected page.
 | QR7 | Every displayed record shows its data source (BR2). | Check S3 and S4. |
 | QR8 | Demo data always carries the BR13 notice. | T-US13-1 to T-US13-3. |
 | QR9 | Data is requested only as needed (no full-table download for each interaction). | Review network requests while changing the time period. |
-| QR10 | Supported browsers: latest Chrome, Edge, Firefox and Safari (**Proposed**, OQ7). | Manual smoke test of Flows 1–4 in each. |
+| QR10 | Supported browsers: latest Chrome, Edge, Firefox and Safari (confirmed, OQ7). | Manual smoke test of Flows 1–4 in each. |
 | QR11 | Every permission in 8.2 is enforced by the database. | T-PERM-1 to T-PERM-5. |
 | QR12 | Credentials: no secrets in the repository; the service-role key is not in client code. | Repository search; review of the built client bundle. |
-| QR13 | Accessibility meets the target in Section 15 (**Proposed** WCAG 2.1 AA). | Keyboard walk-through plus contrast check of every screen. |
+| QR13 | Accessibility meets the target in Section 15 (WCAG 2.1 AA, confirmed, OQ8). | Keyboard walk-through plus contrast check of every screen. |
 
 No numeric speed target has been decided (Section 32).
 
@@ -1110,8 +1120,8 @@ The repository README lists the Stitch designs link as "To be added" and refers 
 | Spacing system, border radius, shadows | Defined in `docs/designs/style-guide.md` (adopted, OQ5). |
 | Icons | Defined in `docs/designs/style-guide.md` (adopted, OQ5). |
 | Dark mode | Not decided (Lerato / Galaletsang). |
-| Map style | **Proposed:** standard OpenStreetMap tiles through Leaflet. |
-| Accessibility target | **Proposed:** WCAG 2.1 AA (Section 15). |
+| Map style | Standard 2D Leaflet map with Stadia Maps Alidade Smooth tiles and OpenStreetMap-derived map data and attribution (confirmed, OQ3). |
+| Accessibility target | WCAG 2.1 AA (Section 15, confirmed, OQ8). |
 
 ---
 
@@ -1224,9 +1234,9 @@ The current project assumes that:
 3. Potential hotspots can be defined using the BR12 rule once its parameter values are decided.
 4. Users will be able to understand the map-based experience.
 5. A synthetic demo dataset is acceptable to the facilitator and users for the MVP, provided it is labelled (BR13).
-6. The free tiers of Supabase, Vercel and OpenStreetMap tile use are sufficient for the MVP (**Proposed**; not checked).
+6. The free tiers of Supabase and Vercel, and the Stadia Maps tile service as used, are sufficient for the MVP (**Proposed**; not checked).
 7. A hosted Supabase project is available to the team. (The README refers to a hosted Supabase project; this has not been verified.)
-8. Row-level security can express every rule in Section 8.2 (**Proposed**; Lesedi to confirm).
+8. Row-level security can express every rule in Section 8.2 (**Proposed**; Lesedi to confirm). Row Level Security is enabled (OQ4).
 
 These assumptions must be validated during development.
 
@@ -1236,23 +1246,23 @@ These assumptions must be validated during development.
 
 | ID | Question | Answer / Proposed answer | Status | Who confirms |
 |---|---|---|---|---|
-| OQ1 | What will be the first authoritative dataset/API? | **Proposed:** a synthetic, clearly labelled demo dataset loaded through a migration file. Real sources (WHO GLASS, NICD) stay listed in 11.6 as future options. | Proposed | Lerato |
-| OQ2 | What methodology will be used to define a potential hotspot? | The rule is written in BR12. Approved values: `HOTSPOT_THRESHOLD_PCT = 25.0%`; `HOTSPOT_MIN_OBSERVATIONS = 3`; `HOTSPOT_WINDOW_MONTHS = 6`. | Answered / Approved | Lerato, Thami |
-| OQ3 | Which map provider will be used? | **Proposed:** Leaflet with OpenStreetMap (both free). | Proposed | Galaletsang, Lesedi |
-| OQ4 | What backend/database architecture will be used? | **Proposed:** Supabase — Auth, Postgres, row-level security. | Proposed | Lesedi |
-| OQ5 | What visual design system will be used? | Adopt Galaletsang's `docs/designs/style-guide.md`. | Answered / Approved | Galaletsang |
-| OQ6 | What geographic resolution will be supported? | Must match what the demo data contains (for example province or district). Exact level not decided. | Unresolved | Lerato |
-| OQ7 | Which browsers and devices must be supported? | **Proposed:** latest Chrome, Edge, Firefox and Safari; desktop and phone widths. | Proposed | Lerato |
-| OQ8 | What accessibility standard will be targeted? | **Proposed:** WCAG 2.1 level AA. | Proposed | Lerato |
+| OQ1 | What will be the first authoritative dataset/API? | The MVP uses a clearly labelled synthetic demo dataset. The current demo source is named `Straina demo dataset (synthetic)` and is stored in the shared Supabase database. It contains synthetic demonstration records and is not real surveillance data. Real sources (WHO GLASS, NICD) stay listed in 11.6 as future options. | Confirmed | Lerato |
+| OQ2 | What methodology will be used to define a potential hotspot? | The rule is written in BR12. Confirmed values: `HOTSPOT_THRESHOLD_PCT = 25.0%`; `HOTSPOT_MIN_OBSERVATIONS = 3`; `HOTSPOT_WINDOW_MONTHS = 6`. | Confirmed | Lerato, Thami |
+| OQ3 | Which map provider will be used? | Leaflet is used. The tile provider of the working MVP map is Stadia Maps Alidade Smooth. The map is a standard 2D Leaflet map using OpenStreetMap-derived map data and attribution; it is not a 3D map. | Confirmed | Galaletsang, Lesedi |
+| OQ4 | What backend/database architecture will be used? | Supabase is the backend/database: PostgreSQL through Supabase, Supabase Auth for authentication, Row Level Security enabled, read-only access for the public map. The service-role key is never exposed in the browser. | Confirmed | Lesedi |
+| OQ5 | What visual design system will be used? | The approved visual baseline is `docs/designs/style-guide.md`. | Confirmed | Galaletsang |
+| OQ6 | What geographic resolution will be supported? | The MVP supports the geographic levels in the schema: `province`, `district` and `national`. No other levels. | Confirmed | Lerato |
+| OQ7 | Which browsers and devices must be supported? | Latest Chrome, Edge, Firefox and Safari; desktop and phone widths. | Confirmed | Lerato |
+| OQ8 | What accessibility standard will be targeted? | WCAG 2.1 AA is the target. | Confirmed | Lerato |
 | OQ9 | What legal and privacy requirements apply to public access and the selected datasets? | Demo data contains no real personal data. Personal data held: account email and role (Section 14). Hosting country and POPIA cross-border position not yet checked. | Proposed | Lerato |
-| OQ10 | Is the map public, or only visible after signing in? | Public read-only access is confirmed (S1–S4 open to everyone; see 8.3). | Answered / Approved | Lerato |
-| OQ11 | How are accounts created, what is the default role, is there password reset in v1? | Admin-managed accounts in v1. No visitor self-registration. | Answered / Approved | Lerato, Lesedi |
+| OQ10 | Is the map public, or only visible after signing in? | The public map is public read-only. S1–S4 are accessible without signing in; visitors can view the map and public information. Write and manage actions remain protected by authentication and role permissions. | Confirmed | Lerato |
+| OQ11 | How are accounts created, what is the default role, is there password reset in v1? | Supabase Auth is used. v1 accounts are Admin-managed/invited; no visitor self-registration. Roles: Admin, Data Submitter and Analyst. A default role and a password-reset policy are not decided. | Confirmed | Lerato, Lesedi |
 
 ---
 
 ## 24. MILESTONES
 
-Statuses use only what the repository and README show (checked 11 Nov 2026). The README describes all features as "planned".
+Statuses use only what the repository and README showed on 11 Nov 2026, updated with the implementation facts reported by the team on 16 Nov 2026.
 
 ### M0 — Idea Submitted
 
@@ -1264,7 +1274,7 @@ Statuses use only what the repository and README show (checked 11 Nov 2026). The
 
 ### M2 — Design Ready
 
-**Status:** Not confirmed complete. The README lists the Stitch designs link as "To be added".
+**Status:** The approved visual baseline is `docs/designs/style-guide.md` (OQ5). Completion of every screen design is not confirmed here.
 
 ### M3 — Build Plan Ready
 
@@ -1272,11 +1282,11 @@ Statuses use only what the repository and README show (checked 11 Nov 2026). The
 
 ### M4 — MVP Built
 
-**Status:** Not started. The README lists F1–F7 as "planned".
+**Status:** In progress. Demonstrated on 16 Nov 2026: the public AMR map with Supabase-backed observation data, area markers, geographic map rendering, hotspot/status visualisation, area selection/navigation, data-source attribution and synthetic-data disclosure; the production build passes. **Not every planned Straina feature is complete.**
 
 ### M5 — Tested / Demo Ready
 
-**Status:** Not started.
+**Status:** Not confirmed complete; no full test pass or final demo is recorded in this PRD.
 
 ---
 
@@ -1285,7 +1295,7 @@ Statuses use only what the repository and README show (checked 11 Nov 2026). The
 The Straina MVP will be a web application that:
 
 - Displays clearly labelled **synthetic demo data** (BR1, BR13) in place of real surveillance data. Connecting a real authoritative source is a future step.
-- Provides a geographic map.
+- Provides a geographic map (a standard 2D Leaflet map).
 - Allows time-based exploration.
 - Allows inspection of resistance patterns.
 - Identifies potential hotspots using the BR12 rule.
@@ -1294,6 +1304,12 @@ The Straina MVP will be a web application that:
 - Lets anyone view the read-only parts without an account (confirmed, OQ10).
 - Lets signed-in Admins and Data Submitters add records, Data Submitters change only their own records, and Admins manage users, roles and data sources (Section 8).
 - Does not provide individual diagnosis or treatment recommendations.
+
+---
+
+### Implemented State (16 Nov 2026)
+
+The implemented and demonstrated core working feature is the **public AMR map**: Supabase-backed observation data, area markers, geographic map rendering, hotspot/status visualisation, area selection/navigation, data-source attribution and synthetic-data disclosure. The production build passes. The map uses Leaflet with Stadia Maps Alidade Smooth tiles and OpenStreetMap-derived map data and attribution. All data shown is synthetic demo data (`Straina demo dataset (synthetic)`), never real surveillance data. This PRD does not claim that every planned Straina feature (including sign-in, record submission and management, and user and data-source management) is complete.
 
 ---
 
@@ -1378,13 +1394,13 @@ Before the project is considered complete, confirm:
 
 ## 29. CURRENT PRD STATUS
 
-**Status:** v1.0 Approved.
+**Status:** v1.0 Approved (16 Nov 2026).
 
-The following items remain unresolved (details in Section 32); OQ2, OQ5, OQ10 and OQ11 are answered / approved:
+OQ1–OQ8, OQ10 and OQ11 are confirmed. The following items remain unresolved (details in Section 32):
 
 - Original app idea link
-- Geographic resolution (OQ6)
 - Default role and password reset (OQ11; account creation is decided)
+- Stadia Maps key / authorisation and environment variable name
 - Confirmation of every **Proposed** decision by the named person
 - Dark mode (not decided in this PRD)
 - Legal/privacy position: hosting country, retention, account deletion (OQ9)
@@ -1429,14 +1445,10 @@ These are **Proposed** non-goals for v1; Lerato has final say.
 
 ### 32.1 Decisions that are Proposed and need confirmation
 
+Confirmed on 16 Nov 2026 and therefore removed from this table: OQ1, OQ2, OQ3, OQ4, OQ5, OQ6, OQ7, OQ8, OQ10, OQ11.
+
 | Item | Proposed | Confirms |
 |---|---|---|
-| First data source (OQ1) | Synthetic demo dataset via migration file | Lerato |
-| Map provider (OQ3) | Leaflet + OpenStreetMap | Galaletsang, Lesedi |
-| Backend, auth, RLS (OQ4) | Supabase Auth + Postgres + row-level security | Lesedi |
-| Design system (OQ5) | **Answered / Approved:** adopt Galaletsang's `docs/designs/style-guide.md` | Galaletsang |
-| Browsers and devices (OQ7) | Latest Chrome, Edge, Firefox, Safari; desktop and phone | Lerato |
-| Accessibility (OQ8) | WCAG 2.1 AA | Lerato |
 | Hosting | Vercel + hosted Supabase | Thami |
 | Roles and permissions table (8.2) | As written | Lerato, Lesedi |
 | All routes in Section 10 | As written (no router exists in the repository) | Lesedi |
@@ -1451,19 +1463,20 @@ These are **Proposed** non-goals for v1; Lerato has final say.
 
 ### 32.2 Questions the PRD cannot answer
 
-1. **Is the map public or sign-in only?** (OQ10) — **Answered / Approved:** public read-only access is confirmed.
-2. **Hotspot values** (OQ2) — **Answered / Approved:** `HOTSPOT_THRESHOLD_PCT = 25.0%`; `HOTSPOT_MIN_OBSERVATIONS = 3`; `HOTSPOT_WINDOW_MONTHS = 6`.
-3. **Geographic resolution** and its allowed values (OQ6).
-4. **Account creation** (OQ11) — **Answered / Approved:** admin-managed accounts in v1; no visitor self-registration. The default role and password reset were not part of this decision and remain unspecified.
+1. **Is the map public or sign-in only?** (OQ10) — **Confirmed:** public read-only access.
+2. **Hotspot values** (OQ2) — **Confirmed:** `HOTSPOT_THRESHOLD_PCT = 25.0%`; `HOTSPOT_MIN_OBSERVATIONS = 3`; `HOTSPOT_WINDOW_MONTHS = 6`.
+3. **Geographic resolution** (OQ6) — **Confirmed:** `province`, `district` and `national`.
+4. **Account creation** (OQ11) — **Confirmed:** admin-managed accounts in v1; no visitor self-registration. The default role and password reset were not part of this decision and remain unspecified.
 5. **Session length** before re-sign-in; whether unsaved form input is kept after expiry.
 6. **Where the hotspot rule is calculated** (browser or database).
-7. **Number of demo records and areas**, and the location of the migration file.
-8. **Style-guide values** (colours, typography, spacing, dark mode) — I could not read `docs/designs/`.
+7. **Number of demo records and areas**, and how the demo dataset was loaded into Supabase (the migration file location is not recorded).
+8. **Style-guide values** (colours, typography, spacing) are in the adopted `docs/designs/style-guide.md` (OQ5) and are not copied here; dark mode is not decided in this PRD.
 9. **Privacy:** hosting country of the Supabase project, retention period, how a user deletes their account.
 10. **Performance target:** no numeric speed target is decided.
 11. **Delete rules:** what happens to records when a data source or a user is deleted (11.4).
 12. **Original app idea link** (M0).
 13. **Demo flow:** whether sign-in and record submission should be shown in the demo (Section 26 is unchanged except for step 12).
+14. **Stadia Maps:** whether the tile service needs an API key or domain authorisation, and the variable name (not recorded).
 
 ### 32.3 Contradictions found
 
