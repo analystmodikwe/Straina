@@ -1,15 +1,69 @@
-// TEMPORARY LOCAL STUB. Gareth owns this file. 
-import type { AmrObservation } from '../types'
+
+import { supabaseClient } from '../lib/supabase'
+import { MESSAGES } from '../lib/messages'
+import type { AmrObservation, DataSource } from '../types'
 
 export interface ObservationFilters {
-  areaCode?: string
+  periodStart?: string
+  periodEnd?: string
   pathogen?: string
   antimicrobial?: string
-  startDate?: string
-  endDate?: string
 }
 
-export async function getObservations(filters?: ObservationFilters): Promise<AmrObservation[]> {
-  void filters
-  throw new Error("stub: replace with Gareth's implementation")
+export type AreaObservation = AmrObservation & {
+  data_source: DataSource
+}
+
+export async function getObservations(
+  filters: ObservationFilters = {},
+): Promise<AmrObservation[]> {
+  let query = supabaseClient
+    .from('amr_observations')
+    .select('*')
+
+  if (filters.periodStart) {
+    query = query.gte('period_end', filters.periodStart)
+  }
+
+  if (filters.periodEnd) {
+    query = query.lte('period_start', filters.periodEnd)
+  }
+
+  if (filters.pathogen) {
+    query = query.eq('pathogen', filters.pathogen)
+  }
+
+  if (filters.antimicrobial) {
+    query = query.eq('antimicrobial', filters.antimicrobial)
+  }
+
+  const { data, error } = await query.order('period_start', {
+    ascending: false,
+  })
+
+  if (error) {
+    throw new Error(MESSAGES.ERR3)
+  }
+
+  return (data ?? []) as AmrObservation[]
+}
+
+export async function getAreaDetail(
+  areaCode: string,
+): Promise<AreaObservation[]> {
+  const { data, error } = await supabaseClient
+    .from('amr_observations')
+    .select('*, data_source:data_sources(*)')
+    .eq('area_code', areaCode)
+    .order('period_start', { ascending: false })
+
+  if (error) {
+    throw new Error(MESSAGES.ERR3)
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error(MESSAGES.ERR2)
+  }
+
+  return data as AreaObservation[]
 }
