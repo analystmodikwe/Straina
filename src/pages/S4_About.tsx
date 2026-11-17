@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { AboutSection } from '../components/AboutSection'
+import { DemoNotice } from '../components/DemoNotice'
 import { getDataSources } from '../api/sources'
+import { MESSAGES } from '../lib/messages'
 import type { DataSource } from '../types'
-
-const DEMO_NOTICE =
-  'Demo data — simulated (synthetic) for demonstration. Not real surveillance data.'
 
 const INSUFFICIENT_DATA_MESSAGE =
   'There is not enough data to identify a potential hotspot here.'
@@ -26,7 +25,7 @@ export function S4_About() {
         }
       } catch {
         if (isMounted) {
-          setError("We couldn't load the latest data. Please try again.")
+          setError(MESSAGES.ERR4)
         }
       } finally {
         if (isMounted) {
@@ -41,6 +40,8 @@ export function S4_About() {
       isMounted = false
     }
   }, [])
+
+  const hasDemoSources = sources.some((source) => source.is_demo)
 
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-8 md:px-6 md:py-10">
@@ -81,10 +82,7 @@ export function S4_About() {
             )}
 
             {!loading && !error && sources.length > 0 && (
-              <ul
-                data-testid="source-list"
-                className="space-y-4"
-              >
+              <ul data-testid="source-list" className="space-y-4">
                 {sources.map((source) => (
                   <li
                     key={source.id}
@@ -160,9 +158,7 @@ export function S4_About() {
               insufficient data.
             </p>
 
-            <p className="mt-3">
-              {INSUFFICIENT_DATA_MESSAGE}
-            </p>
+            <p className="mt-3">{INSUFFICIENT_DATA_MESSAGE}</p>
           </AboutSection>
 
           <AboutSection title="About Straina">
@@ -178,14 +174,7 @@ export function S4_About() {
             </p>
           </AboutSection>
 
-          {sources.some((source) => source.is_demo) && (
-            <aside
-              data-testid="demo-notice"
-              className="rounded-xl border border-[#C4B5FD] bg-[#EDE9FE] p-4 text-sm leading-5 text-[#4C1D95]"
-            >
-              {DEMO_NOTICE}
-            </aside>
-          )}
+          <DemoNotice show={hasDemoSources} />
         </div>
       </div>
     </main>

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { DemoNotice } from '../components/DemoNotice'
 import { PatternCard } from '../components/PatternCard'
 import { getAreaDetail } from '../api/observations'
 import { MESSAGES } from '../lib/messages'
@@ -56,7 +57,9 @@ function isPotentialHotspot(pattern: Pattern): boolean {
   return resistancePct >= HOTSPOT_THRESHOLD_PCT
 }
 
-function getHotspotStatus(pattern: Pattern): 'potential' | 'not-potential' | 'insufficient' {
+function getHotspotStatus(
+  pattern: Pattern,
+): 'potential' | 'not-potential' | 'insufficient' {
   if (pattern.observations.length < HOTSPOT_MIN_OBSERVATIONS) {
     return 'insufficient'
   }
@@ -132,6 +135,10 @@ export function S3_AreaDetail() {
     return [...sourceMap.values()]
   }, [observations])
 
+  const hasDemoData = observations.some(
+    (observation) => observation.data_source.is_demo,
+  )
+
   if (loading) {
     return (
       <main className="mx-auto w-full max-w-content px-4 py-8 md:px-8">
@@ -175,6 +182,8 @@ export function S3_AreaDetail() {
 
   return (
     <main className="mx-auto w-full max-w-content px-4 py-8 md:px-8">
+      <DemoNotice show={hasDemoData} />
+
       <header>
         <p className="text-sm font-medium text-muted">Area detail</p>
         <h1 className="mt-1 text-3xl font-semibold text-text">{areaName}</h1>
