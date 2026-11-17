@@ -45,10 +45,6 @@ export function S9_ManageSources() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [formError, setFormError] = useState<string | null>(null)
 
-  useEffect(() => {
-    loadSources()
-  }, [])
-
   const loadSources = async () => {
     setState((prev) => ({ ...prev, loading: true, error: null }))
     try {
@@ -58,6 +54,10 @@ export function S9_ManageSources() {
       setState({ sources: [], loading: false, error: MESSAGES.ERR11 })
     }
   }
+
+  useEffect(() => {
+    loadSources()
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

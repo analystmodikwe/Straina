@@ -18,10 +18,6 @@ export function S8_ManageUsers() {
     error: null,
   })
 
-  useEffect(() => {
-    loadUsers()
-  }, [])
-
   const loadUsers = async () => {
     setState((prev) => ({ ...prev, loading: true, error: null }))
     try {
@@ -31,6 +27,10 @@ export function S8_ManageUsers() {
       setState({ profiles: [], loading: false, error: MESSAGES.ERR11 })
     }
   }
+
+  useEffect(() => {
+    loadUsers()
+  }, [])
 
   const handleRoleChange = async (userId: string, newRole: Role) => {
     const targetProfile = state.profiles.find((p) => p.id === userId)
