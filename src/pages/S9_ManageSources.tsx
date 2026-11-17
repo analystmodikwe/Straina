@@ -46,7 +46,6 @@ export function S9_ManageSources() {
   const [formError, setFormError] = useState<string | null>(null)
 
   const loadSources = async () => {
-    setState((prev) => ({ ...prev, loading: true, error: null }))
     try {
       const sources = await getDataSources()
       setState({ sources, loading: false, error: null })
@@ -56,7 +55,20 @@ export function S9_ManageSources() {
   }
 
   useEffect(() => {
-    loadSources()
+    let cancelled = false
+    ;(async () => {
+      try {
+        const sources = await getDataSources()
+        if (cancelled) return
+        setState({ sources, loading: false, error: null })
+      } catch {
+        if (cancelled) return
+        setState({ sources: [], loading: false, error: MESSAGES.ERR11 })
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {

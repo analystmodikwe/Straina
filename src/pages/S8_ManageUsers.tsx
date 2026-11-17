@@ -19,7 +19,6 @@ export function S8_ManageUsers() {
   })
 
   const loadUsers = async () => {
-    setState((prev) => ({ ...prev, loading: true, error: null }))
     try {
       const profiles = await getUsers()
       setState({ profiles, loading: false, error: null })
@@ -29,7 +28,20 @@ export function S8_ManageUsers() {
   }
 
   useEffect(() => {
-    loadUsers()
+    let cancelled = false
+    ;(async () => {
+      try {
+        const profiles = await getUsers()
+        if (cancelled) return
+        setState({ profiles, loading: false, error: null })
+      } catch {
+        if (cancelled) return
+        setState({ profiles: [], loading: false, error: MESSAGES.ERR11 })
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   const handleRoleChange = async (userId: string, newRole: Role) => {
