@@ -1,32 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { AlertCircle } from 'lucide-react'
 import { MESSAGES } from '../lib/messages'
+import { useOnline } from '../hooks/useOnline'
 
 interface OfflineBannerProps {
   isOffline?: boolean
 }
 
 export const OfflineBanner: React.FC<OfflineBannerProps> = ({ isOffline }) => {
-  const [browserOffline, setBrowserOffline] = useState(() =>
-    typeof navigator !== 'undefined' ? !navigator.onLine : false
-  )
+  const browserOnline = useOnline()
 
-  useEffect(() => {
-    if (isOffline !== undefined) return
-
-    const handleOnline = () => setBrowserOffline(false)
-    const handleOffline = () => setBrowserOffline(true)
-
-    window.addEventListener('online', handleOnline)
-    window.addEventListener('offline', handleOffline)
-
-    return () => {
-      window.removeEventListener('online', handleOnline)
-      window.removeEventListener('offline', handleOffline)
-    }
-  }, [isOffline])
-
-  const offline = isOffline !== undefined ? isOffline : browserOffline
+  const offline = isOffline !== undefined ? isOffline : !browserOnline
 
   if (!offline) {
     return null
