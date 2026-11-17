@@ -12,13 +12,13 @@ Antimicrobial resistance is a major public-health concern, but the information i
 
 | What | Link |
 | --- | --- |
-| Live app | https://straina-eight.vercel.app/ |
-| Stitch designs | (https://stitch.google.com/projects/14278857879121820535) |
-| Project board | https://github.com/users/analystmodikwe/projects/8 |
+| Live app | [https://straina-eight.vercel.app/](https://straina-eight.vercel.app/) |
+| Stitch designs | [Stitch project](https://stitch.google.com/projects/14278857879121820535) |
+| Project board | [https://github.com/users/analystmodikwe/projects/8](https://github.com/users/analystmodikwe/projects/8) |
 | Team Loom | To be added |
 | PRD | [docs/PRD.md](docs/PRD.md) |
 | Designs | [docs/designs/](docs/designs/) |
-| Implementation plan | [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) (to be added) |
+| Implementation plan | [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) |
 | Team roles and timeline | [docs/team/README.md](docs/team/README.md) |
 
 ## Team & Roles
@@ -28,7 +28,7 @@ Antimicrobial resistance is a major public-health concern, but the information i
 | Name | GitHub | Role(s) | Main features built |
 | --- | --- | --- | --- |
 | Lerato Thungo | [LeratoDaisy](https://github.com/LeratoDaisy) | Product Owner, Frontend, Backend | PRD; trends view (planned) |
-| Lesedi Modikwe | [analystmodikwe](https://github.com/analystmodikwe) | Tech Lead, Frontend, Backend | Repo, CI and scaffold; accounts, roles and RLS; Supabase (planned) |
+| Lesedi Modikwe | [analystmodikwe](https://github.com/analystmodikwe) | Tech Lead, Frontend, Backend | Architecture & CI; database migrations & RLS; Supabase auth API, S5 sign-in, S10 access denied, ProtectedRoute |
 | Galaletsang Modise | [galaletsangmodise](https://github.com/galaletsangmodise) | Designer, Frontend, Backend | Stitch designs; map view (planned) |
 | Gareth Motloutsi | [GarethMalekaMotloutsi](https://github.com/GarethMalekaMotloutsi) | QA / Test Lead, Frontend, Backend | Test plan; submit resistance records (planned) |
 | Thami Sithole | [ThamiRoneo](https://github.com/ThamiRoneo) | DevOps / Release, Frontend, Backend | CI/deployment; hotspot alerts (planned) |
@@ -39,27 +39,30 @@ Everyone writes code, opens PRs and reviews PRs. The "Main features built" colum
 
 | Priority | Feature | Status |
 | --- | --- | --- |
-| Must | F1 Interactive AMR map | 🚧 planned |
-| Must | F2 Time exploration | 🚧 planned |
-| Must | F3 Resistance pattern exploration | 🚧 planned |
-| Must | F4 Potential hotspot identification | 🚧 planned |
-| Must | F5 Data source context | 🚧 planned |
-| Should | F6 Public explanation layer | 🚧 planned |
-| Should | F7 Advanced analysis | 🚧 planned |
+| Must | F1 Interactive AMR map (US1) | ✅ done |
+| Must | F2 Time exploration (US2) | ✅ done |
+| Must | F3 Resistance pattern exploration (US3) | ✅ done |
+| Must | F4 Potential hotspot identification (US4, BR12) | ✅ done |
+| Must | F5 Data source context (US5) | ✅ done |
+| Should | F6 Public explanation layer | ✅ done |
+| Must | F8 Sign-in and roles (US6, US7) | ✅ done |
+| Must | F9 Record submission and management (US8, US9, US10) | 🚧 in progress |
+| Must | F10 User and role management (US11) | 🚧 in progress |
+| Must | F11 Data source management (US12) | 🚧 in progress |
 
-✅ done · 🚧 in progress or planned. The final feature list follows PRD v1.0 and may change, and every change is recorded in the PRD change log.
+✅ done · 🚧 in progress. The final feature list follows PRD v1.0.
 
 ## Tech stack and architecture
 
 | Layer | Technology |
 | --- | --- |
-| Frontend | React, TypeScript, Vite |
-| Styling | Tailwind CSS (planned) |
-| Map | Leaflet with OpenStreetMap (planned) |
-| Backend, database and auth | Supabase: Postgres, Auth, Row-Level Security (planned) |
-| Testing | Vitest (plus component and end-to-end tests, planned) |
+| Frontend | React 19, TypeScript, Vite |
+| Styling | Tailwind CSS 3.4 (design tokens from Stitch style guide) |
+| Map | Leaflet 1.9 + React Leaflet with OpenStreetMap tiles |
+| Backend, database and auth | Hosted Supabase: PostgreSQL, Supabase Auth, Row-Level Security |
+| Testing | Vitest 5.1 + React Testing Library (49 tests passing) |
 | CI | GitHub Actions |
-| Hosting | Vercel (planned) |
+| Hosting | Vercel (continuous deployment on main merges) |
 
 ```
 User -> React web app (Vite) -> Supabase (Auth + Postgres with RLS) -> AMR data
@@ -80,13 +83,19 @@ npm run dev
 
 Then open the address shown in the terminal (usually http://localhost:5173).
 
-**Environment variables:** copy `.env.example` to `.env` and fill in the values. `.env.example` will be added with the first Supabase PR. Real keys are shared privately and `.env` is never committed.
+**Environment variables:** copy `.env.example` to `.env` and fill in `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. Real keys are shared privately and `.env` is never committed.
 
-**Database migrations and seed data:** to be added when the Supabase setup is merged.
+**Database migrations and seed data:** migrations and synthetic demo seed are version-controlled in `supabase/migrations/` and applied to the hosted Supabase project.
 
 ## Test logins
 
-Test accounts only, never real passwords. To be added when sign-in is built (one account for each role).
+Test accounts only, never real passwords. Use these credentials to test role-based access on the live app:
+
+| Role | Email | Password | Access / Permissions |
+|---|---|---|---|
+| **Admin** | `admin@straina.org` | `Admin@Straina2026` | Full access: user management, data sources, and all observation records |
+| **Data Submitter** | `submitter@straina.org` | `Submit@Straina2026` | Can submit new observations and manage their own records |
+| **Analyst** | `analyst@straina.org` | `Analyst@Straina2026` | Read-only surveillance access across all public and analyst views |
 
 ## Tests
 
