@@ -5,6 +5,8 @@ import { S2_Explore } from './pages/S2_Explore'
 import { S3_AreaDetail } from './pages/S3_AreaDetail'
 import { S4_About } from './pages/S4_About'
 import { S5_SignIn } from './pages/S5_SignIn'
+import { S8_ManageUsers } from './pages/S8_ManageUsers'
+import { S9_ManageSources } from './pages/S9_ManageSources'
 import { S10_AccessDenied } from './pages/S10_AccessDenied'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { AuthProvider } from './hooks/useAuth'
@@ -56,7 +58,7 @@ export function App() {
                   path="/admin/users"
                   element={
                     <ProtectedRoute allowedRoles={['admin']}>
-                      <div className="p-8 text-center text-[#475569]">Manage Users (S8)</div>
+                      <S8_ManageUsers />
                     </ProtectedRoute>
                   }
                 />
@@ -64,7 +66,7 @@ export function App() {
                   path="/admin/sources"
                   element={
                     <ProtectedRoute allowedRoles={['admin']}>
-                      <div className="p-8 text-center text-[#475569]">Manage Sources (S9)</div>
+                      <S9_ManageSources />
                     </ProtectedRoute>
                   }
                 />
