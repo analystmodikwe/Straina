@@ -24,8 +24,7 @@
 | Gareth Motloutsi | QA / Test Lead, Frontend, Backend |
 | Thami Sithole | DevOps / Release, Frontend, Backend |
 
-**Repository facts verified on 11 Nov 2026:** `docs/PRD.md` exists; `package.json` lists React 19, Vite, TypeScript, Vitest and ESLint only; the README marks F1–F7, Tailwind, Leaflet, Supabase and Vercel as planned; `.env.example`, migrations, `IMPLEMENTATION_PLAN.md` and the Stitch designs link are "to be added". **Implementation facts reported by the team on 16 Nov 2026** (not verified by reading the repository): Leaflet 2D map with Stadia Maps Alidade Smooth tiles; Supabase (PostgreSQL, Auth, Row Level Security) with the MVP schema implemented; the synthetic dataset "Straina demo dataset (synthetic)" stored in the shared Supabase database; the public map working against Supabase data; production build passes. **Not verifiable** (GitHub blocked access) as of 11 Nov 2026: `src/`, `docs/designs/`, `docs/team/`, issues and pull requests.
-
+**Repository facts verified on 11 Nov 2026:** `docs/PRD.md` exists; `package.json` lists React 19, Vite, TypeScript, Vitest and ESLint only; the README marks F1–F7, Tailwind, Leaflet, Supabase and Vercel as planned; `.env.example`, migrations, `IMPLEMENTATION_PLAN.md` and the Stitch designs link are "to be added". 
 > **How to read "Proposed".** Anything marked **Proposed:** is a starting point that the team has not yet confirmed. Lerato has the final say on scope. Every Proposed item is listed in Section 32 so nothing is hidden. Nothing marked Proposed may be treated as decided during implementation until it is confirmed and this PRD is updated.
 
 ---
@@ -658,7 +657,7 @@ The primary entry point to Straina. Route `/`. Stories: US1, US5, US13.
 
 Should contain:
 
-- Interactive 2D map (Leaflet; Stadia Maps Alidade Smooth tiles with OpenStreetMap-derived map data and attribution — confirmed, OQ3)
+- Interactive 2D map (Leaflet; OpenStreetMap tiles from tile.openstreetmap.org with OpenStreetMap attribution)
 - Map legend
 - Context/explanation
 - Map controls
@@ -927,7 +926,7 @@ These are candidate sources only and are **not the production data source**. The
 ### 12.1 Current Technology
 
 - **Repository (verified 11 Nov 2026):** React 19, React DOM, TypeScript, Vite, Vitest, ESLint; scripts `dev`, `build`, `lint`, `typecheck`, `test`, `preview`; Node.js 22 or newer.
-- **Implementation facts reported by the team (16 Nov 2026):** the working MVP uses Leaflet (a standard 2D map), Stadia Maps Alidade Smooth as the tile provider, and Supabase (PostgreSQL, Auth, Row Level Security). The production build passes.
+- Implementation facts verified in the repository: the working MVP uses Leaflet (a standard 2D map), OpenStreetMap tiles from tile.openstreetmap.org, and Supabase (PostgreSQL, Auth, Row Level Security). The production build passes.
 - Whether Tailwind CSS, a router and Vercel hosting are in place is not recorded in this PRD.
 
 ### 12.2 Repository Status
@@ -940,7 +939,7 @@ The PRD remains the source of truth for design, implementation and tests. The im
 |---|---|---|---|
 | Frontend | React, TypeScript, Vite | Current repository | — |
 | Styling | Tailwind CSS | Proposed (README: planned) | Galaletsang |
-| Map | Leaflet (standard 2D map); Stadia Maps Alidade Smooth tiles with OpenStreetMap-derived map data and attribution | Confirmed (OQ3, 16 Nov 2026) | — |
+| Map | Leaflet (standard 2D map); OpenStreetMap tiles from tile.openstreetmap.org with OpenStreetMap attribution | Confirmed | — |
 | Authentication | Supabase Auth | Confirmed (OQ4, OQ11) | — |
 | Database | Supabase-hosted PostgreSQL | Confirmed (OQ4) | — |
 | Permissions | PostgreSQL Row Level Security (RLS) enabled; the public map has read-only access | Confirmed (OQ4) | — |
@@ -955,8 +954,7 @@ The frontend talks to Supabase through the `supabase-js` client. Permissions are
 
 ### 12.4 Environment Variables
 
-Variable names below are **Proposed**; the names used by the implementation are not recorded in this PRD. Whether the Stadia Maps tile service needs an API key or domain authorisation, and its variable name, is not recorded here (Section 32).
-
+Variable names below are **Proposed**; the names used by the implementation are not recorded in this PRD. The map uses OpenStreetMap tiles from tile.openstreetmap.org and does not require a provider-specific API key or environment variable.
 | Variable | Use | Public or secret |
 |---|---|---|
 | `VITE_SUPABASE_URL` | Supabase project URL | Public (safe in the browser) |
@@ -1120,7 +1118,7 @@ The repository README lists the Stitch designs link as "To be added" and refers 
 | Spacing system, border radius, shadows | Defined in `docs/designs/style-guide.md` (adopted, OQ5). |
 | Icons | Defined in `docs/designs/style-guide.md` (adopted, OQ5). |
 | Dark mode | Not decided (Lerato / Galaletsang). |
-| Map style | Standard 2D Leaflet map with Stadia Maps Alidade Smooth tiles and OpenStreetMap-derived map data and attribution (confirmed, OQ3). |
+| Map style | Standard 2D Leaflet map with OpenStreetMap tiles from tile.openstreetmap.org and OpenStreetMap attribution. |
 | Accessibility target | WCAG 2.1 AA (Section 15, confirmed, OQ8). |
 
 ---
@@ -1234,7 +1232,7 @@ The current project assumes that:
 3. Potential hotspots can be defined using the BR12 rule once its parameter values are decided.
 4. Users will be able to understand the map-based experience.
 5. A synthetic demo dataset is acceptable to the facilitator and users for the MVP, provided it is labelled (BR13).
-6. The free tiers of Supabase and Vercel, and the Stadia Maps tile service as used, are sufficient for the MVP (**Proposed**; not checked).
+6. The free tiers of Supabase and Vercel, and the OpenStreetMap tile service as used, are sufficient for the MVP (**Proposed**; not checked).
 7. A hosted Supabase project is available to the team. (The README refers to a hosted Supabase project; this has not been verified.)
 8. Row-level security can express every rule in Section 8.2 (**Proposed**; Lesedi to confirm). Row Level Security is enabled (OQ4).
 
@@ -1248,7 +1246,7 @@ These assumptions must be validated during development.
 |---|---|---|---|---|
 | OQ1 | What will be the first authoritative dataset/API? | The MVP uses a clearly labelled synthetic demo dataset. The current demo source is named `Straina demo dataset (synthetic)` and is stored in the shared Supabase database. It contains synthetic demonstration records and is not real surveillance data. Real sources (WHO GLASS, NICD) stay listed in 11.6 as future options. | Confirmed | Lerato |
 | OQ2 | What methodology will be used to define a potential hotspot? | The rule is written in BR12. Confirmed values: `HOTSPOT_THRESHOLD_PCT = 25.0%`; `HOTSPOT_MIN_OBSERVATIONS = 3`; `HOTSPOT_WINDOW_MONTHS = 6`. | Confirmed | Lerato, Thami |
-| OQ3 | Which map provider will be used? | Leaflet is used. The tile provider of the working MVP map is Stadia Maps Alidade Smooth. The map is a standard 2D Leaflet map using OpenStreetMap-derived map data and attribution; it is not a 3D map. | Confirmed | Galaletsang, Lesedi |
+| OQ3 | Which map provider will be used? | Leaflet is used. The working MVP uses OpenStreetMap tiles from tile.openstreetmap.org with OpenStreetMap attribution. The map is a standard 2D Leaflet map; it is not a 3D map. | Confirmed | Galaletsang, Lesedi |
 | OQ4 | What backend/database architecture will be used? | Supabase is the backend/database: PostgreSQL through Supabase, Supabase Auth for authentication, Row Level Security enabled, read-only access for the public map. The service-role key is never exposed in the browser. | Confirmed | Lesedi |
 | OQ5 | What visual design system will be used? | The approved visual baseline is `docs/designs/style-guide.md`. | Confirmed | Galaletsang |
 | OQ6 | What geographic resolution will be supported? | The MVP supports the geographic levels in the schema: `province`, `district` and `national`. No other levels. | Confirmed | Lerato |
@@ -1309,7 +1307,7 @@ The Straina MVP will be a web application that:
 
 ### Implemented State (16 Nov 2026)
 
-The implemented and demonstrated core working feature is the **public AMR map**: Supabase-backed observation data, area markers, geographic map rendering, hotspot/status visualisation, area selection/navigation, data-source attribution and synthetic-data disclosure. The production build passes. The map uses Leaflet with Stadia Maps Alidade Smooth tiles and OpenStreetMap-derived map data and attribution. All data shown is synthetic demo data (`Straina demo dataset (synthetic)`), never real surveillance data. This PRD does not claim that every planned Straina feature (including sign-in, record submission and management, and user and data-source management) is complete.
+The implemented and demonstrated core working feature is the **public AMR map**: Supabase-backed observation data, area markers, geographic map rendering, hotspot/status visualisation, area selection/navigation, data-source attribution and synthetic-data disclosure. The production build passes. The map uses Leaflet with OpenStreetMap tiles from tile.openstreetmap.org and OpenStreetMap attribution. All data shown is synthetic demo data (`Straina demo dataset (synthetic)`), never real surveillance data. This PRD does not claim that every planned Straina feature (including sign-in, record submission and management, and user and data-source management) is complete.
 
 ---
 
@@ -1400,7 +1398,6 @@ OQ1–OQ8, OQ10 and OQ11 are confirmed. The following items remain unresolved (d
 
 - Original app idea link
 - Default role and password reset (OQ11; account creation is decided)
-- Stadia Maps key / authorisation and environment variable name
 - Confirmation of every **Proposed** decision by the named person
 - Dark mode (not decided in this PRD)
 - Legal/privacy position: hosting country, retention, account deletion (OQ9)
@@ -1476,7 +1473,7 @@ Confirmed on 16 Nov 2026 and therefore removed from this table: OQ1, OQ2, OQ3, O
 11. **Delete rules:** what happens to records when a data source or a user is deleted (11.4).
 12. **Original app idea link** (M0).
 13. **Demo flow:** whether sign-in and record submission should be shown in the demo (Section 26 is unchanged except for step 12).
-14. **Stadia Maps:** whether the tile service needs an API key or domain authorisation, and the variable name (not recorded).
+14. **OpenStreetMap tiles:** the working MVP uses `tile.openstreetmap.org` directly with OpenStreetMap attribution.
 
 ### 32.3 Contradictions found
 
