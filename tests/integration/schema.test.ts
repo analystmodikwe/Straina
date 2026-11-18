@@ -12,12 +12,12 @@ vi.mock('../../src/lib/supabase', () => ({
 
 import { supabaseClient } from '../../src/lib/supabase'
 
-describe('Database Schema and RLS (T-SETUP-1, T-SETUP-2)', () => {
+describe('Client-Side Schema and RLS Error Contracts (Mocked Client Tests)', () => {
   beforeEach(() => {
     mockFrom.mockReset()
   })
 
-  it('T-SETUP-1: Supabase client can query public tables (profiles, data_sources, amr_observations)', async () => {
+  it('T-SETUP-1: Client contract for querying public tables (profiles, data_sources, amr_observations)', async () => {
     const mockSelect = vi.fn().mockResolvedValue({
       data: [{ id: 'test-id' }],
       error: null,
@@ -52,7 +52,7 @@ describe('Database Schema and RLS (T-SETUP-1, T-SETUP-2)', () => {
     expect(mockFrom).toHaveBeenCalledWith('profiles')
   })
 
-  it('T-SETUP-2: RLS blocks unauthenticated writes to amr_observations', async () => {
+  it('T-SETUP-2: Client handles database RLS 42501 error when write is rejected by policy', async () => {
     const mockInsert = vi.fn().mockResolvedValue({
       data: null,
       error: {
@@ -72,6 +72,7 @@ describe('Database Schema and RLS (T-SETUP-1, T-SETUP-2)', () => {
 
     expect(data).toBeNull()
     expect(error).not.toBeNull()
+    expect(error?.code).toBe('42501')
     expect(error?.message).toContain('row-level security')
   })
 })
