@@ -27,11 +27,11 @@ Antimicrobial resistance is a major public-health concern, but the information i
 
 | Name | GitHub | Role(s) | Main features built |
 | --- | --- | --- | --- |
-| Lerato Thungo | [LeratoDaisy](https://github.com/LeratoDaisy) | Product Owner, Frontend, Backend | PRD; trends view (planned) |
+| Lerato Thungo | [LeratoDaisy](https://github.com/LeratoDaisy) | Product Owner, Frontend, Backend | PRD; trends view (F2, F3); PRD alignment |
 | Lesedi Modikwe | [analystmodikwe](https://github.com/analystmodikwe) | Tech Lead, Frontend, Backend | Architecture & CI; database migrations & RLS; Supabase auth API, S5 sign-in, S10 access denied, ProtectedRoute |
-| Galaletsang Modise | [galaletsangmodise](https://github.com/galaletsangmodise) | Designer, Frontend, Backend | Stitch designs; map view (planned) |
-| Gareth Motloutsi | [GarethMalekaMotloutsi](https://github.com/GarethMalekaMotloutsi) | QA / Test Lead, Frontend, Backend | Test plan; submit resistance records (planned) |
-| Thami Sithole | [ThamiRoneo](https://github.com/ThamiRoneo) | DevOps / Release, Frontend, Backend | CI/deployment; hotspot alerts (planned) |
+| Galaletsang Modise | [galaletsangmodise](https://github.com/galaletsangmodise) | Designer, Frontend, Backend | Stitch designs; map view (F1); S4 data sources / public explanation (F5, F6) |
+| Gareth Motloutsi | [GarethMalekaMotloutsi](https://github.com/GarethMalekaMotloutsi) | QA / Test Lead, Frontend, Backend | Test plan; submit resistance records (in progress) |
+| Thami Sithole | [ThamiRoneo](https://github.com/ThamiRoneo) | DevOps / Release, Frontend, Backend | CI/deployment; hotspot alerts (F4); S8 user management (F10); S9 source management (F11); offline hook |
 
 Everyone writes code, opens PRs and reviews PRs. The "Main features built" column is updated as features are merged.
 
@@ -47,10 +47,27 @@ Everyone writes code, opens PRs and reviews PRs. The "Main features built" colum
 | Should | F6 Public explanation layer | ✅ done |
 | Must | F8 Sign-in and roles (US6, US7) | ✅ done |
 | Must | F9 Record submission and management (US8, US9, US10) | 🚧 in progress |
-| Must | F10 User and role management (US11) | 🚧 in progress |
-| Must | F11 Data source management (US12) | 🚧 in progress |
+| Must | F10 User and role management (US11) | ✅ done |
+| Must | F11 Data source management (US12) | ✅ done |
 
 ✅ done · 🚧 in progress. The final feature list follows PRD v1.0.
+
+## Screenshots
+
+| S1: Home / Interactive AMR Map | S2: Time & Pattern Exploration |
+|:---:|:---:|
+| ![S1 Home Map](docs/screenshots/s1-home-map.png) | ![S2 Explore](docs/screenshots/s2-explore.png) |
+| *National surveillance map showing resistance hotspots* | *Interactive time slider & pathogen/antibiotic filters* |
+
+| S3: Location Detail | S8: Manage Users & Roles (Admin) |
+|:---:|:---:|
+| ![S3 Area Detail](docs/screenshots/s3-area-detail.png) | ![S8 Manage Users](docs/screenshots/s8-manage-users.png) |
+| *Province-level breakdown & local observations* | *Role management (Admin, Data Submitter, Analyst)* |
+
+| S9: Manage Data Sources (Admin) |
+|:---:|
+| ![S9 Manage Sources](docs/screenshots/s9-manage-sources.png) |
+| *Surveillance dataset attribution & synthetic demo labeling* |
 
 ## Tech stack and architecture
 
@@ -60,7 +77,7 @@ Everyone writes code, opens PRs and reviews PRs. The "Main features built" colum
 | Styling | Tailwind CSS 3.4 (design tokens from Stitch style guide) |
 | Map | Leaflet 1.9 + React Leaflet with OpenStreetMap tiles |
 | Backend, database and auth | Hosted Supabase: PostgreSQL, Supabase Auth, Row-Level Security |
-| Testing | Vitest 5.1 + React Testing Library (49 tests passing) |
+| Testing | Vitest 5.1 + React Testing Library (80 tests passing across 17 test files) |
 | CI | GitHub Actions |
 | Hosting | Vercel (continuous deployment on main merges) |
 
