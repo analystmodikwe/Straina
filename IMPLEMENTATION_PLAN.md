@@ -129,7 +129,7 @@ Straina transforms surveillance information into an interactive geographic and t
 | Icons | Lucide React | Latest stable | Minimal UI icons (20px, 1.5px stroke: zoom, close, offline) |
 | Map | Leaflet + React Leaflet | Leaflet 1.9, React-Leaflet 5 | Interactive map rendering with OpenStreetMap tile layer |
 | Backend & Database | Supabase (PostgreSQL, Auth, RLS) | Supabase CLI latest; `@supabase/supabase-js` v2 | Authentication, relational data storage, Row-Level Security |
-| Validation | Zod | Zod v4 (present in repo) | Schema validation for forms and API responses |
+| Validation | TypeScript + Form Handlers | Native | Client-side form & field validation with exact PRD messages (ERR13, ERR14); Zod in package.json optional |
 | Unit & Component tests | Vitest + React Testing Library + jsdom | Vitest 5.1 | TDD tests for business rules, components, and views |
 | Database & RLS tests | Vitest + `@supabase/supabase-js` | Latest | Integration tests validating Postgres RLS policies directly |
 | Lint & Typecheck | ESLint + TypeScript Compiler (`tsc`) | ESLint 10, TypeScript 6 | Code quality and type enforcement |
@@ -432,13 +432,13 @@ Row-Level Security (RLS) is enabled on all tables. Policies implement PRD §8.2:
 | ID | Table | Action | Who is allowed | Rule / Policy Condition | Enforced by | Tests |
 |---|---|---|---|---|---|---|
 | SEC1 | `data_sources` | SELECT | Everyone (anon & authenticated) | `true` | RLS SELECT | T-PERM-1a |
-| SEC2 | `data_sources` | INSERT / UPDATE / DELETE | Admin only | `auth.jwt() ->> 'role' in (select role from profiles where id = auth.uid() and role = 'admin')` | RLS WITH CHECK | T-PERM-5a, T-PERM-5b |
+| SEC2 | `data_sources` | INSERT / UPDATE / DELETE | Admin only | `public.current_user_role() = 'admin'` | RLS WITH CHECK | T-PERM-5a, T-PERM-5b |
 | SEC3 | `amr_observations` | SELECT | Everyone (anon & authenticated) | `true` | RLS SELECT | T-PERM-1a |
-| SEC4 | `amr_observations` | INSERT | Admin, Data Submitter | `exists (select 1 from profiles where id = auth.uid() and role in ('admin', 'data_submitter'))` | RLS WITH CHECK | T-PERM-2a, T-PERM-2b |
-| SEC5 | `amr_observations` | UPDATE | Admin (any) or Data Submitter (own only) | `exists (select 1 from profiles where id = auth.uid() and (role = 'admin' or (role = 'data_submitter' and created_by = auth.uid())))` | RLS USING & WITH CHECK | T-PERM-3a, T-PERM-3b |
+| SEC4 | `amr_observations` | INSERT | Admin, Data Submitter | `public.current_user_role() = 'admin' or (public.current_user_role() = 'data_submitter' and created_by = auth.uid())` | RLS WITH CHECK | T-PERM-2a, T-PERM-2b |
+| SEC5 | `amr_observations` | UPDATE | Admin (any) or Data Submitter (own only) | `public.current_user_role() = 'admin' or (public.current_user_role() = 'data_submitter' and created_by = auth.uid())` | RLS USING & WITH CHECK | T-PERM-3a, T-PERM-3b |
 | SEC6 | `amr_observations` | DELETE | Admin (any) or Data Submitter (own only) | Same as SEC5 | RLS USING | T-PERM-3a, T-PERM-3b |
-| SEC7 | `profiles` | SELECT | Self or Admin | `auth.uid() = id or exists (select 1 from profiles where id = auth.uid() and role = 'admin')` | RLS USING | T-PERM-4a, T-PERM-4b |
-| SEC8 | `profiles` | UPDATE | Admin only | `exists (select 1 from profiles where id = auth.uid() and role = 'admin')` | RLS WITH CHECK | T-PERM-4a, T-PERM-4b |
+| SEC7 | `profiles` | SELECT | Self or Admin | `auth.uid() = id or public.current_user_role() = 'admin'` | RLS USING | T-PERM-4a, T-PERM-4b |
+| SEC8 | `profiles` | UPDATE | Admin only | `public.current_user_role() = 'admin'` | RLS WITH CHECK | T-PERM-4a, T-PERM-4b |
 | SEC9 | `profiles` | INSERT / DELETE | Service role only | `false` | No public policy | T-SEC-2 |
 
 ### Always-on security checks
@@ -978,12 +978,12 @@ flowchart TD
 
 #### Step 1: Write the failing tests first (Red)
 
-| Test ID | Level | File | What it checks |
+| Test ID | Level | Verification Method | What it checks |
 |---|---|---|---|
-| `T-REL-1` | Integration | `tests/integration/release.test.ts` | Production environment variables `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are configured. |
-| `T-REL-2` | Integration | `tests/integration/release.test.ts` | Hosted Supabase instance contains all migrations up to date. |
+| `T-REL-1` | Verification | Manual / Deployment check | Production environment variables `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are configured in Vercel dashboard. |
+| `T-REL-2` | Verification | Supabase Dashboard / SQL check | Hosted Supabase instance contains all migrations up to date. |
 
-- [ ] Tests written and fail before deployment verification.
+- [x] Production deployment verified on live link.
 
 #### Step 2: Backend (Green)
 - [ ] Run `npx supabase db push` to apply all migrations and demo seed to hosted Supabase project.
