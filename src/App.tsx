@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Header } from './components/Header'
 import { S1_HomeMap } from './pages/S1_HomeMap'
@@ -5,6 +6,7 @@ import { S2_Explore } from './pages/S2_Explore'
 import { S3_AreaDetail } from './pages/S3_AreaDetail'
 import { S4_About } from './pages/S4_About'
 import { S5_SignIn } from './pages/S5_SignIn'
+import { S6_SubmitRecord } from './pages/S6_SubmitRecord'
 import { S8_ManageUsers } from './pages/S8_ManageUsers'
 import { S9_ManageSources } from './pages/S9_ManageSources'
 import { S10_AccessDenied } from './pages/S10_AccessDenied'
@@ -34,26 +36,33 @@ export function App() {
                   path="/records"
                   element={
                     <ProtectedRoute allowedRoles={['admin', 'data_submitter']}>
-                      <div className="p-8 text-center text-[#475569]">Records List (S7)</div>
+                      <div className="p-8 text-center text-[#475569]">
+                        Records List (S7)
+                      </div>
                     </ProtectedRoute>
                   }
                 />
+
                 <Route
                   path="/records/new"
                   element={
                     <ProtectedRoute allowedRoles={['admin', 'data_submitter']}>
-                      <div className="p-8 text-center text-[#475569]">Submit Record (S6)</div>
+                      <S6_SubmitRecord />
                     </ProtectedRoute>
                   }
                 />
+
                 <Route
                   path="/records/:recordId/edit"
                   element={
                     <ProtectedRoute allowedRoles={['admin', 'data_submitter']}>
-                      <div className="p-8 text-center text-[#475569]">Edit Record (S6)</div>
+                      <div className="p-8 text-center text-[#475569]">
+                        Edit Record (S6)
+                      </div>
                     </ProtectedRoute>
                   }
                 />
+
                 <Route
                   path="/admin/users"
                   element={
@@ -62,6 +71,7 @@ export function App() {
                     </ProtectedRoute>
                   }
                 />
+
                 <Route
                   path="/admin/sources"
                   element={
@@ -73,7 +83,11 @@ export function App() {
 
                 <Route
                   path="*"
-                  element={<div className="p-8 text-center text-[#475569]">Page Not Found</div>}
+                  element={
+                    <div className="p-8 text-center text-[#475569]">
+                      Page Not Found
+                    </div>
+                  }
                 />
               </Routes>
             </main>
