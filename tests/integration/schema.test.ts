@@ -1,3 +1,4 @@
+
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const { mockFrom } = vi.hoisted(() => ({
@@ -12,12 +13,12 @@ vi.mock('../../src/lib/supabase', () => ({
 
 import { supabaseClient } from '../../src/lib/supabase'
 
-describe('Client-Side Schema and RLS Error Contracts (Mocked Client Tests)', () => {
+describe('Mocked Supabase Client Contracts', () => {
   beforeEach(() => {
     mockFrom.mockReset()
   })
 
-  it('T-SETUP-1: Client contract for querying public tables (profiles, data_sources, amr_observations)', async () => {
+  it('T-SETUP-1: mocked client supports queries to public tables', async () => {
     const mockSelect = vi.fn().mockResolvedValue({
       data: [{ id: 'test-id' }],
       error: null,
@@ -52,7 +53,7 @@ describe('Client-Side Schema and RLS Error Contracts (Mocked Client Tests)', () 
     expect(mockFrom).toHaveBeenCalledWith('profiles')
   })
 
-  it('T-SETUP-2: Client handles database RLS 42501 error when write is rejected by policy', async () => {
+  it('T-SETUP-2: mocked client handles a simulated RLS 42501 error response', async () => {
     const mockInsert = vi.fn().mockResolvedValue({
       data: null,
       error: {
@@ -76,4 +77,3 @@ describe('Client-Side Schema and RLS Error Contracts (Mocked Client Tests)', () 
     expect(error?.message).toContain('row-level security')
   })
 })
-
