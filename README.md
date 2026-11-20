@@ -15,6 +15,7 @@ Antimicrobial resistance is a major public-health concern, but the information i
 | Live app | [https://straina-eight.vercel.app/](https://straina-eight.vercel.app/) |
 | Stitch designs | [Stitch project](https://stitch.google.com/projects/14278857879121820535) |
 | Project board | [https://github.com/users/analystmodikwe/projects/8](https://github.com/users/analystmodikwe/projects/8) |
+| Team Loom | LERATO: [Watch Loom](https://www.loom.com/share/8f2cdc4210f647e48ca8d64a966504fc)<br>GALALETSANG: [Watch Loom](https://www.loom.com/share/88ea39b5cbc44446b992553e7d200409)<br>LESEDI: [Watch Loom](https://www.loom.com/share/9ddf1e4c94304aabb1b9e2f33d06be53)<br>GARETH: _(to be added)_<br>THAMI: _(to be added)_ |
 | Team Loom | LERATO: [Watch Loom](https://www.loom.com/share/8f2cdc4210f647e48ca8d64a966504fc)<br>GALALETSANG: _(to be added)_<br>LESEDI: [Watch Loom](https://www.loom.com/share/9ddf1e4c94304aabb1b9e2f33d06be53)<br>GARETH: [Watch Loom](https://www.loom.com/share/ca482fa3b76146ee8b21e02520f3c485)<br>THAMI: _(to be added)_ |
 | PRD | [docs/PRD.md](docs/PRD.md) |
 | Designs | [docs/designs/](docs/designs/) |
